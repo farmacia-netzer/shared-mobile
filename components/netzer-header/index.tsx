@@ -2,7 +2,7 @@ import { isIos } from '##common/platform';
 import { useNetzerNavigation } from '##hooks/useNetzerNavigation';
 import { FONT_SIZE } from '##theme/typography.constant';
 import React, { FC, ReactNode, useCallback } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NetzerIcon } from '../netzer-icon/netzer-icon.component';
 import { ICON_GLYPH_MAP } from '../netzer-icon/netzer-icon.constant';
@@ -12,6 +12,8 @@ interface NetzerHeaderProps {
   rightSection?: ReactNode;
   showGoBackIcon?: boolean;
 }
+
+const windowHeight = Dimensions.get('window').height;
 
 export const NetzerHeader: FC<NetzerHeaderProps> = ({ showGoBackIcon = true, title, rightSection }) => {
   const navigation = useNetzerNavigation();
@@ -45,8 +47,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 25,
-    paddingTop:  isIos ? 5 : '5%',
-    marginBottom: isIos ? 0 : '7%'
+    paddingTop: isIos ? (windowHeight >= 667 ? '5%' : 5) : '5%',
+    marginBottom: isIos ? (windowHeight >= 667 ? '5%' : 0) : '7%'
   },
   backIcon: {
     width: 30,
