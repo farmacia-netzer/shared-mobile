@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NetzerCard /> renders 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#ffffff",
+      "borderRadius": 8,
+      "elevation": 4,
+      "marginBottom": 16,
+      "padding": 16,
+      "shadowColor": "#000",
+      "shadowOffset": Object {
+        "height": 2,
+        "width": 0,
+      },
+      "shadowOpacity": 0.23,
+      "shadowRadius": 2.62,
+    }
+  }
+>
+  <View />
+</View>
+`;

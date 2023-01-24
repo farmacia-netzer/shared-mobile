@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OrderPayment /> renders 1`] = `
+<View
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "marginTop": 150,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#4961DC",
+          "fontSize": 52,
+          "textAlign": "center",
+        }
+      }
+    >
+      S10
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#4961DC",
+          "fontSize": 18,
+          "textAlign": "center",
+        }
+      }
+    >
+      Total a pagar
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "marginTop": 15,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 16,
+          "fontWeight": "400",
+          "lineHeight": 20,
+          "marginBottom": 10,
+        }
+      }
+    >
+      Formas de pago
+    </Text>
+    <RCTScrollView
+      collapsable={false}
+      handlerTag={1}
+      handlerType="NativeViewGestureHandler"
+      onGestureHandlerEvent={[Function]}
+      onGestureHandlerStateChange={[Function]}
+      waitFor={
+        Array [
+          Object {
+            "current": null,
+          },
+        ]
+      }
+    >
+      <View />
+    </RCTScrollView>
+  </View>
+</View>
+`;

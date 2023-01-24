@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OrderCustomer /> renders 1`] = `
+<View
+  style={Object {}}
+>
+  <View>
+    <Text
+      fontStyle={12}
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+            "lineHeight": 18,
+          },
+          undefined,
+          Object {
+            "fontSize": 14,
+            "marginBottom": 5,
+            "marginTop": 15,
+          },
+        ]
+      }
+    >
+      Nombre
+    </Text>
+    <Text
+      fontStyle={12}
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+            "lineHeight": 18,
+          },
+          undefined,
+          Object {
+            "fontSize": 20,
+            "fontWeight": "400",
+            "lineHeight": 24,
+          },
+        ]
+      }
+    />
+  </View>
+  <View>
+    <Text
+      fontStyle={12}
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+            "lineHeight": 18,
+          },
+          undefined,
+          Object {
+            "fontSize": 14,
+            "marginBottom": 5,
+            "marginTop": 15,
+          },
+        ]
+      }
+    >
+      Celular
+    </Text>
+    <Text
+      fontStyle={12}
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+            "lineHeight": 18,
+          },
+          undefined,
+          Object {
+            "fontSize": 20,
+            "fontWeight": "400",
+            "lineHeight": 24,
+          },
+        ]
+      }
+    />
+  </View>
+</View>
+`;

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NetzerForm /> renders 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "paddingBottom": 0,
+    }
+  }
+>
+  <RCTScrollView
+    scrollEnabled={false}
+  >
+    <View />
+  </RCTScrollView>
+</View>
+`;

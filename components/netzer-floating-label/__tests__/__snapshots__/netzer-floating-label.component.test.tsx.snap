@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NetzerFloatingLabel Renders properly when inVisible 1`] = `
+<View
+  accessibilityElementsHidden={true}
+  animation-config={
+    Object {
+      "useNativeDriver": true,
+    }
+  }
+  importantForAccessibility="no-hide-descendants"
+  style={
+    Array [
+      Object {
+        "position": "absolute",
+      },
+      Object {
+        "top": 0,
+      },
+    ]
+  }
+  testID="undefined-CONTAINER"
+>
+  <Text
+    animation-config={
+      Object {
+        "useNativeDriver": true,
+      }
+    }
+    style={
+      Object {
+        "color": "",
+        "fontSize": 14,
+      }
+    }
+    testID="undefined-TEXT"
+  >
+    test placeholder
+  </Text>
+</View>
+`;
+
+exports[`NetzerFloatingLabel renders properly if value sets null and isFocused sets false 1`] = `
+<View
+  accessibilityElementsHidden={true}
+  animation-config={
+    Object {
+      "useNativeDriver": true,
+    }
+  }
+  importantForAccessibility="no-hide-descendants"
+  style={
+    Array [
+      Object {
+        "position": "absolute",
+      },
+      Object {
+        "top": 15,
+      },
+    ]
+  }
+  testID="TEST_ID-CONTAINER"
+>
+  <Text
+    animation-config={
+      Object {
+        "useNativeDriver": true,
+      }
+    }
+    style={
+      Object {
+        "color": "#767676",
+        "fontSize": 14,
+      }
+    }
+    testID="TEST_ID-TEXT"
+  >
+    test placeholder
+  </Text>
+</View>
+`;

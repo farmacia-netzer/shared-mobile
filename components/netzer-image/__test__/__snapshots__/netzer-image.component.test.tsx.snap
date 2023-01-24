@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NetzerImage /> renders 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "height": 150,
+      "justifyContent": "center",
+      "margin": 5,
+      "width": 150,
+    }
+  }
+>
+  <View
+    accessibilityRole="button"
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+  >
+    <Image
+      collapsable={false}
+      onError={[Function]}
+      onLoad={[Function]}
+      source={
+        Object {
+          "uri": "",
+        }
+      }
+      style={
+        Object {
+          "height": 150,
+          "margin": 5,
+          "opacity": 0,
+          "width": 150,
+        }
+      }
+    />
+  </View>
+</View>
+`;

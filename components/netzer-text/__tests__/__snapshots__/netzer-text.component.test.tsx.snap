@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NetzerText /> renders correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "fontSize": 14,
+        "lineHeight": 18,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  test text
+</Text>
+`;
