@@ -1,7 +1,7 @@
 import React, { ReactElement, useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { BASE_MARGIN, BASE_PADDING, XLARGE_BORDER_RADIUS, X_MEDIUM_BORDER_RADIUS } from '##theme/dimensions.constant';
+import { BASE_MARGIN, BASE_PADDING, X_LARGE_BORDER_RADIUS, X_MEDIUM_BORDER_RADIUS } from '##theme/dimensions.constant';
 import { GRAY_SCALE } from '##theme/grayscale.constant';
 
 interface NetzerCardProps {
@@ -14,7 +14,7 @@ export const NetzerCard = ({ children, padding = BASE_PADDING, typeRadius = 'med
 
   const getRadiusBorder = useCallback(() => ({
     ['medium']: X_MEDIUM_BORDER_RADIUS,
-    ['large']: XLARGE_BORDER_RADIUS
+    ['large']: X_LARGE_BORDER_RADIUS
   }?.[typeRadius]), [typeRadius])
 
   const containerStyles = useMemo(() => [styles.container, { padding, borderRadius: getRadiusBorder(), height }], [getRadiusBorder, height, padding])
