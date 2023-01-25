@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 25,
-    paddingTop: isIos ? (windowHeight >= 667 ? '5%' : 5) : '5%',
-    marginBottom: isIos ? (windowHeight >= 667 ? '5%' : 0) : '7%'
+    paddingTop: isIos ? (windowHeight <= 667 ? '5%' : 5) : '5%',
+    marginBottom: isIos ? (windowHeight <= 667 ? '5%' : 0) : '7%'
   },
   backIcon: {
     width: 30,
