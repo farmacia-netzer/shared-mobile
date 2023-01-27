@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { NetzerText } from '../netzer-text';
 
 interface NetzerInfo {
   Icon: Function;
   title: string;
-  description: string;
+  description: string | ReactNode;
 }
 
 export const NetzerInfo: FC<NetzerInfo> = ({ Icon, title, description }) => {
@@ -13,7 +13,11 @@ export const NetzerInfo: FC<NetzerInfo> = ({ Icon, title, description }) => {
     <View style={styles.boxHeaderSection}>
       <Icon style={styles.image} width={110} height={110} />
       <NetzerText style={styles.title} text={title} type={'TITLE'} />
-      <NetzerText text={description} style={styles.description} type="SUBTITLE" />
+      {typeof description === 'string' ?
+        <NetzerText text={description} style={styles.description} type="SUBTITLE" />
+        :
+        description
+      }
     </View>
   );
 };
