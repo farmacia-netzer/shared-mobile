@@ -75,11 +75,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: FONT_SIZE.LARGE,
     fontWeight: 'bold',
-    fontFamily: 'Avenir Next'
+    fontFamily: 'Avenir Next',
+    paddingVertical: 3
   },
   subtitle: {
     fontSize: FONT_SIZE.NORMAL
   },
   text: {
+
   }
 })

@@ -10,10 +10,6 @@ export interface ICON_GLYPH {
 export const ICON_GLYPH_MAP: ICON_GLYPH = {
   CHEVRON_LEFT: { family: 'netzer', name: 'netzer-chevron-left' },
 
-  HOME: { family: 'ionicons', name: 'home-outline' },
-  PRODUCTS: { family: 'ionicons', name: 'color-filter-outline' },
-  CART: { family: 'ionicons', name: 'cart-outline' },
-  PROFILE: { family: 'ionicons', name: 'person-outline' },
   ADD_SHOPPING_CART: { family: 'netzer', name: 'netzer-add-to-cart' },
   ADD_SHOPPING_LIST: { family: 'netzer', name: 'netzer-list-add' },
   ADD_CONTACT_INFO: { family: 'netzer', name: 'netzer-add-contact-info' },
@@ -57,7 +53,6 @@ export const ICON_GLYPH_MAP: ICON_GLYPH = {
   TRIANGLE_DOWN: { family: 'netzer', name: 'netzer-triangle-down' },
   TIMER: { family: 'netzer', name: 'netzer-inprogress' },
   IMAGE: { family: 'materialcommunityicons', name: 'image' },
-  ELLIPSIS_H: { family: 'ionicons', name: 'ios-ellipsis-horizontal' },
   REFRESH: { family: 'fontawesomeicon', name: 'refresh' },
   EYE: { family: 'fontawesomeicon', name: 'eye' },
   EYE_SLASH: { family: 'fontawesomeicon', name: 'eye-slash' },
@@ -67,7 +62,6 @@ export const ICON_GLYPH_MAP: ICON_GLYPH = {
   EXTERNAL_LINK: { family: 'fontawesome', name: 'external-link-alt' },
   LOCATE: { family: 'materialicons', name: 'my-location' },
   TRASH_CAN: { family: 'netzer', name: 'netzer-trash' },
-  VERTICAL_ELLIPSIS: { family: 'ionicons', name: 'ios-ellipsis-vertical' },
   OK_CIRCLED: { family: 'netzer', name: 'netzer-ok-circled' },
   CANCEL_CIRCLED: { family: 'netzer', name: 'netzer-cancel-circled' },
   CHEVRON_UP: { family: 'netzer', name: 'netzer-chevron-up' },
@@ -87,8 +81,6 @@ export const ICON_GLYPH_MAP: ICON_GLYPH = {
   CC_DISCOVER: { family: 'fontawesomeicon', name: 'cc-discover' },
   CART_PICKUP: { family: 'netzer', name: 'netzer-pickup' },
   INFO: { family: 'materialcommunityicons', name: 'information' },
-  CHECKBOX_BLANK_OUTLINE: { family: 'ionicons', name: 'square-outline' },
-  CHECKBOX_CHECKED_OUTLINE: { family: 'ionicons', name: 'checkbox-outline' },
   RADIO_BOX_UNSELECTED: { family: 'materialcommunityicons', name: 'radiobox-blank' },
   RADIO_BOX_SELECTED: { family: 'materialcommunityicons', name: 'radiobox-marked' },
   PARITY: { family: 'fontawesomeicon', name: 'table' },
@@ -97,7 +89,23 @@ export const ICON_GLYPH_MAP: ICON_GLYPH = {
   ADD_TO_LIST: { family: 'netzer', name: 'netzer-add-to-list' },
   SHARE_IOS: { family: 'netzer', name: 'netzer-share-ios' },
   SHARE_ANDROID: { family: 'netzer', name: 'netzer-share-android' },
-  DEAL_GROUP: { family: 'netzer', name: 'netzer-deal-group' }
+  DEAL_GROUP: { family: 'netzer', name: 'netzer-deal-group' },
+
+  // ionicons
+  HOME: { family: 'ionicons', name: 'home-outline' },
+  PRODUCTS: { family: 'ionicons', name: 'color-filter-outline' },
+  CART: { family: 'ionicons', name: 'cart' },
+  PROFILE: { family: 'ionicons', name: 'person-outline' },
+  ELLIPSIS_H: { family: 'ionicons', name: 'ios-ellipsis-horizontal' },
+  TRASH_OUTLINE: { family: 'ionicons', name: 'trash-outline' },
+  CART_OUTLINE: { family: 'ionicons', name: 'cart-outline' },
+  REMOVE_OUTLINE: { family: 'ionicons', name: 'remove-outline' },
+  ADD_OUTLINE: { family: 'ionicons', name: 'add-outline' },
+  VERTICAL_ELLIPSIS: { family: 'ionicons', name: 'ios-ellipsis-vertical' },
+  CHECKBOX_BLANK_OUTLINE: { family: 'ionicons', name: 'square-outline' },
+  CHECKBOX_CHECKED_OUTLINE: { family: 'ionicons', name: 'checkbox-outline' },
+  SAVE_OUTLINE: { family: 'ionicons', name: 'save-outline' }
+
 };
 
 export const DEFAULT_WL_PAYMENT_CARD_ICON = ICON_GLYPH_MAP.CC_VISA;

@@ -5,6 +5,7 @@ import { FONT_SIZE } from '##theme/typography.constant';
 import { StyleSheet } from 'react-native';
 import { getTheme } from '##theme/app-theme';
 import { NetzerHeader } from '##component/netzer-header';
+import { COLOR_PRIMARY } from '##theme/colors.constant';
 
 interface NetzerCardLayoutProps {
   children: Array<React.ReactElement> | React.ReactElement;
@@ -23,12 +24,10 @@ export const NetzerCardLayout: FC<NetzerCardLayoutProps> = ({ children, title, r
   );
 };
 
-const theme = getTheme(true);
-
 export const NetzerCardLayoutStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.primary
+    backgroundColor: COLOR_PRIMARY
   },
   backIcon: {
     width: 20,
