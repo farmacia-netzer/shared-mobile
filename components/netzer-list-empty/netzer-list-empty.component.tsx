@@ -8,24 +8,20 @@ import { NetzerText } from '../netzer-text';
 interface NetzerListEmptyProps {
   Image: Function | null;
   text: string;
+  description?: string;
 }
 
-export const NetzerListEmpty: FC<NetzerListEmptyProps> = ({ Image, text }) => {
+export const NetzerListEmpty: FC<NetzerListEmptyProps> = ({ Image, text, description }) => {
   return (
     <View style={styles.empty}>
       {Image && <Image />}
-      <NetzerText style={styles.emptyText} text={text} fontStyle={'BOLD'} />
+      <NetzerText style={styles.emptyText} text={text} fontStyle={'BOLD'} type="TITLE" />
+      {description && <NetzerText style={styles.description} text={description} fontStyle={'BOLD'} />}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flex: 1,
-    marginTop: BASE_MARGIN,
-    paddingHorizontal: BASE_PADDING
-  },
   empty: {
     flex: 1,
     alignItems: 'center',
@@ -35,5 +31,11 @@ const styles = StyleSheet.create({
     fontSize: FONT_SIZE.LARGE,
     marginTop: 30,
     color: GRAY_SCALE.GRAY_50
+  },
+  description: {
+    marginTop: 10,
+    color: GRAY_SCALE.GRAY_50,
+    textAlign: "center",
+    lineHeight: 25,
   }
 });

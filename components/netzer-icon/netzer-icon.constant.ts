@@ -104,7 +104,8 @@ export const ICON_GLYPH_MAP: ICON_GLYPH = {
   VERTICAL_ELLIPSIS: { family: 'ionicons', name: 'ios-ellipsis-vertical' },
   CHECKBOX_BLANK_OUTLINE: { family: 'ionicons', name: 'square-outline' },
   CHECKBOX_CHECKED_OUTLINE: { family: 'ionicons', name: 'checkbox-outline' },
-  SAVE_OUTLINE: { family: 'ionicons', name: 'save-outline' }
+  SAVE_OUTLINE: { family: 'ionicons', name: 'save-outline' },
+  CLOSE_OUTLINE: { family: 'ionicons', name: 'close-outline' }
 
 };
 
