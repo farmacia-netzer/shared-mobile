@@ -1,9 +1,10 @@
 import React, { ReactNode, useCallback, useMemo } from 'react';
 import {
   ActivityIndicator,
-  Keyboard, StyleSheet,
+  Keyboard, StyleProp, StyleSheet,
   Text, TouchableOpacity,
-  View
+  View,
+  ViewStyle
 } from 'react-native';
 import { TouchableOpacity as RNTouchableOpacity } from 'react-native-gesture-handler';
 import { GLYPH } from '../netzer-icon/netzer-icon.constant';
@@ -24,6 +25,7 @@ enum EButtonTypes {
   WHITE_BLUR = 'WHITE_BLUR',
   GRAY_OUTLINE = 'GRAY_OUTLINE',
   GRAY_TRANSPARENT = 'GRAY_TRANSPARENT',
+  DANGER_TRANSPARENT = 'DANGER_TRANSPARENT',
 }
 
 enum EButtonSizes {
@@ -31,7 +33,7 @@ enum EButtonSizes {
   NORMAL = 'NORMAL',
 }
 
-type TButtonTypes = | "PRIMARY" | "SECONDARY" | "PRIMARY_LIGHT" | "PRIMARY_OUTLINE" | "TRANSPARENT" | "GRAY_TRANSPARENT" | "WHITE_BLUR" | 'GRAY_OUTLINE';
+type TButtonTypes = | "PRIMARY" | "SECONDARY" | "PRIMARY_LIGHT" | "PRIMARY_OUTLINE" | "TRANSPARENT" | "GRAY_TRANSPARENT" | "WHITE_BLUR" | 'GRAY_OUTLINE' | 'DANGER_TRANSPARENT';
 
 type TButtonSizes = 'SMALL' | 'NORMAL'
 
@@ -47,6 +49,7 @@ export interface NetzerPrimaryButtonProps {
   loading?: boolean;
   fromGestureHandler?: boolean;
   onPress: Function
+  style?: StyleProp<ViewStyle>
 }
 export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
   text,
@@ -59,6 +62,7 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
   loading = false,
   disabled = false,
   fromGestureHandler = false,
+  style,
   ...props
 }: NetzerPrimaryButtonProps) => {
 
@@ -78,6 +82,7 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
   const getButtonType = useCallback(() => {
     return ({
       [EButtonTypes.PRIMARY]: { background: [styles.primary] },
+      [EButtonTypes.DANGER_TRANSPARENT]: { background: [styles.dangerTransparent] },
       [EButtonTypes.SECONDARY]: { background: [styles.secondary] },
       [EButtonTypes.PRIMARY_LIGHT]: { background: [styles.primaryLight] },
       [EButtonTypes.PRIMARY_OUTLINE]: { background: [styles.primaryOutline] },
@@ -94,6 +99,7 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
     [EButtonTypes.SECONDARY]: 'white',
     [EButtonTypes.PRIMARY_LIGHT]: COLOR_PRIMARY,
     [EButtonTypes.PRIMARY_OUTLINE]: COLOR_PRIMARY,
+    [EButtonTypes.DANGER_TRANSPARENT]: 'red',
     [EButtonTypes.TRANSPARENT]: COLOR_PRIMARY,
     [EButtonTypes.WHITE_BLUR]: COLOR_PRIMARY,
     [EButtonTypes.GRAY_TRANSPARENT]: GRAY_SCALE.GRAY_70
@@ -102,7 +108,7 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
 
   const containerProps = {
     disabled: disabled || loading,
-    style: [{ ...styles.button, padding: buttonSize.button, width }, ...getButtonType().background, disabled || loading ? { opacity: 0.7 } : {}],
+    style: [{ ...styles.button, padding: buttonSize.button, width }, ...getButtonType().background, disabled || loading ? { opacity: 0.7 } : {}, style],
     activeOpacity: 0.5,
     testID: testId,
     ...props
@@ -164,6 +170,9 @@ const styles = StyleSheet.create({
   grayOutLine: {
     borderColor: '#E7E7E7',
     borderWidth: 1
+  },
+  dangerTransparent: {
+    backgroundColor: "transparent"
   },
   text: {
     fontWeight: "600",
