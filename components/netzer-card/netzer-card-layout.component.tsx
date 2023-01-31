@@ -1,25 +1,26 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 import { View } from 'react-native';
 
+import { COLOR_PRIMARY } from '##theme/colors.constant';
 import { FONT_SIZE } from '##theme/typography.constant';
 import { StyleSheet } from 'react-native';
-import { getTheme } from '##theme/app-theme';
-import { NetzerHeader } from '##component/netzer-header';
-import { COLOR_PRIMARY } from '##theme/colors.constant';
 
 interface NetzerCardLayoutProps {
   children: Array<React.ReactElement> | React.ReactElement;
-  title: string | ReactNode;
-  rightSection?: ReactNode;
-  showGoBackIcon?: boolean;
-  withoutBoxPadding?: boolean
+  withoutBoxPadding?: boolean;
 }
 
-export const NetzerCardLayout: FC<NetzerCardLayoutProps> = ({ children, title, rightSection, showGoBackIcon, withoutBoxPadding = false }) => {
+export const NetzerCardLayout: FC<NetzerCardLayoutProps> = ({ children, withoutBoxPadding = false }) => {
   return (
     <View style={NetzerCardLayoutStyles.container}>
-      <NetzerHeader title={title} rightSection={rightSection} showGoBackIcon={showGoBackIcon} />
-      <View style={{ ...NetzerCardLayoutStyles.boxContainer, ...(withoutBoxPadding ? { paddingHorizontal: 0 } : { paddingHorizontal: '7%' }) }}>{children}</View>
+      <View
+        style={{
+          ...NetzerCardLayoutStyles.boxContainer,
+          ...(withoutBoxPadding ? { paddingHorizontal: 0 } : { paddingHorizontal: '4%' })
+        }}
+      >
+        {children}
+      </View>
     </View>
   );
 };
@@ -27,7 +28,8 @@ export const NetzerCardLayout: FC<NetzerCardLayoutProps> = ({ children, title, r
 export const NetzerCardLayoutStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLOR_PRIMARY
+    backgroundColor: COLOR_PRIMARY,
+    paddingTop: '3%'
   },
   backIcon: {
     width: 20,
@@ -54,7 +56,7 @@ export const NetzerCardLayoutStyles = StyleSheet.create({
   boxContainer: {
     flex: 1,
     backgroundColor: 'white',
-    borderTopEndRadius: 50,
-    borderTopStartRadius: 50
+    borderTopEndRadius: 40,
+    borderTopStartRadius: 40
   }
 });
