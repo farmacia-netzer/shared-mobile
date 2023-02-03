@@ -9,15 +9,15 @@ import { NetzerField } from './netzer-field.component';
 
 interface NetzerFormProps {
   enableScroll?: boolean;
-  fields: IFieldsForm
+  fields: IFieldsForm;
   onSubmit(form: any): void;
-  footerSection: (onSubmit: Function) => ReactElement
+  footerSection: (onSubmit: Function) => ReactElement;
 }
 export interface IFieldsForm {
   [key: string]: {
-    type: 'text',
-    configuration: NetzerTextInputProps
-  }
+    type: 'text';
+    configuration: NetzerTextInputProps;
+  };
 }
 
 export const NetzerForm: React.FC<NetzerFormProps> = ({
@@ -33,8 +33,8 @@ export const NetzerForm: React.FC<NetzerFormProps> = ({
   const methods = useForm({ mode: 'onChange', resolver: yupResolver(schema) });
 
   const fields = useMemo(() => {
-    return Object.values(FieldsWithoutConversion).map(field => field.configuration)
-  }, [FieldsWithoutConversion])
+    return Object.values(FieldsWithoutConversion).map((field) => field.configuration);
+  }, [FieldsWithoutConversion]);
 
   useEffect(() => {
     const kds = Keyboard.addListener('keyboardDidShow', () => setIsKeyboardShown(true));
@@ -54,13 +54,16 @@ export const NetzerForm: React.FC<NetzerFormProps> = ({
     return isKeyboardShown && enableScroll;
   };
 
-  const _onSubmit = useCallback((data) => {
-    Keyboard.dismiss();
-    onSubmit(data)
-  }, [onSubmit]);
+  const _onSubmit = useCallback(
+    (data) => {
+      Keyboard.dismiss();
+      onSubmit(data);
+    },
+    [onSubmit]
+  );
 
   return (
-    <FormProvider {...methods} >
+    <FormProvider {...methods}>
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView scrollEnabled={isScrollEnabled()}>
           {fields.map((field: NetzerTextInputProps, index) => (
