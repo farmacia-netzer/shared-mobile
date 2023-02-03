@@ -1,5 +1,5 @@
 import React, { ReactElement, useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { LayoutChangeEvent, StyleSheet, View } from 'react-native';
 
 import { BASE_MARGIN, BASE_PADDING, X_LARGE_BORDER_RADIUS, X_MEDIUM_BORDER_RADIUS } from '##theme/dimensions.constant';
 import { GRAY_SCALE } from '##theme/grayscale.constant';
@@ -9,15 +9,18 @@ interface NetzerCardProps {
   padding?: number;
   typeRadius?: 'medium' | 'large' | 'none';
   height?: number | string;
+  onLayout?: ((event: LayoutChangeEvent) => void) | undefined
 }
-export const NetzerCard = ({ children, padding = BASE_PADDING, typeRadius = 'medium', height }: NetzerCardProps) => {
+
+
+export const NetzerCard = ({ children, padding = BASE_PADDING, typeRadius = 'medium', height, onLayout }: NetzerCardProps) => {
   const cardStyles = useMemo(
     () =>
-      ({
-        ['none']: { radius: 0, shadowOpacity: 0 },
-        ['medium']: { radius: X_MEDIUM_BORDER_RADIUS, shadowOpacity: 0.23 },
-        ['large']: { radius: X_LARGE_BORDER_RADIUS, shadowOpacity: 0.23 }
-      }?.[typeRadius]),
+    ({
+      ['none']: { radius: 0, shadowOpacity: 0 },
+      ['medium']: { radius: X_MEDIUM_BORDER_RADIUS, shadowOpacity: 0.23 },
+      ['large']: { radius: X_LARGE_BORDER_RADIUS, shadowOpacity: 0.23 }
+    }?.[typeRadius]),
     [typeRadius]
   );
 
@@ -29,7 +32,7 @@ export const NetzerCard = ({ children, padding = BASE_PADDING, typeRadius = 'med
     [cardStyles.radius, cardStyles.shadowOpacity, height, padding]
   );
 
-  return <View style={containerStyles}>{children}</View>;
+  return <View onLayout={onLayout} style={containerStyles}>{children}</View>;
 };
 
 const styles = StyleSheet.create({
