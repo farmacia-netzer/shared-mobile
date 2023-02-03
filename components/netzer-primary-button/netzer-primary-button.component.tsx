@@ -10,7 +10,7 @@ import { TouchableOpacity as RNTouchableOpacity } from 'react-native-gesture-han
 import { GLYPH } from '../netzer-icon/netzer-icon.constant';
 
 import { COLOR_PRIMARY, COLOR_SECONDARY } from '##theme/colors.constant';
-import { MEDIUM_PADDING, SMALL_SPACING, X_MEDIUM_BORDER_RADIUS } from '##theme/dimensions.constant';
+import { MEDIUM_PADDING, SMALL_SPACING, X_LARGE_BORDER_RADIUS, X_MEDIUM_BORDER_RADIUS } from '##theme/dimensions.constant';
 import { FONT_SIZE } from '##theme/typography.constant';
 import { NetzerIcon } from '../netzer-icon/netzer-icon.component';
 import { GRAY_SCALE } from '##theme/grayscale.constant';
@@ -18,9 +18,10 @@ import { GRAY_SCALE } from '##theme/grayscale.constant';
 
 enum EButtonTypes {
   PRIMARY = 'PRIMARY',
-  SECONDARY = 'SECONDARY',
   PRIMARY_LIGHT = 'PRIMARY_LIGHT',
+  PRIMARY_LIGHT_OUTLINE = 'PRIMARY_LIGHT_OUTLINE',
   PRIMARY_OUTLINE = 'PRIMARY_OUTLINE',
+  SECONDARY = 'SECONDARY',
   TRANSPARENT = 'TRANSPARENT',
   WHITE_BLUR = 'WHITE_BLUR',
   GRAY_OUTLINE = 'GRAY_OUTLINE',
@@ -33,17 +34,49 @@ enum EButtonSizes {
   NORMAL = 'NORMAL',
 }
 
-type TButtonTypes = | "PRIMARY" | "SECONDARY" | "PRIMARY_LIGHT" | "PRIMARY_OUTLINE" | "TRANSPARENT" | "GRAY_TRANSPARENT" | "WHITE_BLUR" | 'GRAY_OUTLINE' | 'DANGER_TRANSPARENT';
+enum EButtonRadius {
+  SMALL = 'SMALL',
+  NORMAL = 'NORMAL',
+}
+
+enum EButtonContainer {
+  CONTAINER = 'CONTAINER',
+  CONTAINER_REVERSE_BETWEEN = 'CONTAINER_REVERSE_BETWEEN'
+}
+
+type TButtonTypes =
+  // primary
+  | "PRIMARY"
+  | "PRIMARY_LIGHT"
+  | "PRIMARY_LIGHT_OUTLINE"
+  | "PRIMARY_OUTLINE"
+  // secondary
+  | "SECONDARY"
+  // transparent
+  | "TRANSPARENT"
+  // gray
+  | "GRAY_TRANSPARENT"
+  | 'GRAY_OUTLINE'
+  // white
+  | "WHITE_BLUR"
+  // danger
+  | 'DANGER_TRANSPARENT';
 
 type TButtonSizes = 'SMALL' | 'NORMAL'
+
+type TButtonRadius = 'SMALL' | 'NORMAL'
+
+type TButtonContainer = 'CONTAINER' | 'CONTAINER_REVERSE_BETWEEN'
 
 export interface NetzerPrimaryButtonProps {
   text?: string | ReactNode;
   fill?: string;
   testId?: string;
   size?: TButtonSizes;
+  container?: TButtonContainer
   width?: number;
   type?: TButtonTypes
+  radius?: TButtonRadius
   glyph?: GLYPH;
   disabled?: boolean;
   loading?: boolean;
@@ -57,6 +90,8 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
   type = EButtonTypes.PRIMARY,
   onPress,
   size = EButtonSizes.NORMAL,
+  radius = EButtonRadius.SMALL,
+  container = EButtonContainer.CONTAINER,
   testId,
   width,
   loading = false,
@@ -82,10 +117,11 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
   const getButtonType = useCallback(() => {
     return ({
       [EButtonTypes.PRIMARY]: { background: [styles.primary] },
-      [EButtonTypes.DANGER_TRANSPARENT]: { background: [styles.dangerTransparent] },
-      [EButtonTypes.SECONDARY]: { background: [styles.secondary] },
       [EButtonTypes.PRIMARY_LIGHT]: { background: [styles.primaryLight] },
       [EButtonTypes.PRIMARY_OUTLINE]: { background: [styles.primaryOutline] },
+      [EButtonTypes.PRIMARY_LIGHT_OUTLINE]: { background: [styles.primaryLightOutline] },
+      [EButtonTypes.DANGER_TRANSPARENT]: { background: [styles.dangerTransparent] },
+      [EButtonTypes.SECONDARY]: { background: [styles.secondary] },
       [EButtonTypes.TRANSPARENT]: { background: [styles.PrimaryTransparent] },
       [EButtonTypes.WHITE_BLUR]: { background: [styles.whiteBlur] },
       [EButtonTypes.GRAY_OUTLINE]: { background: [styles.grayOutLine] },
@@ -99,16 +135,32 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
     [EButtonTypes.SECONDARY]: 'white',
     [EButtonTypes.PRIMARY_LIGHT]: COLOR_PRIMARY,
     [EButtonTypes.PRIMARY_OUTLINE]: COLOR_PRIMARY,
+    [EButtonTypes.PRIMARY_LIGHT_OUTLINE]: COLOR_PRIMARY,
     [EButtonTypes.DANGER_TRANSPARENT]: 'red',
     [EButtonTypes.TRANSPARENT]: COLOR_PRIMARY,
     [EButtonTypes.WHITE_BLUR]: COLOR_PRIMARY,
     [EButtonTypes.GRAY_TRANSPARENT]: GRAY_SCALE.GRAY_70
-
   }?.[type])
+
+  const getButtonRadius = () => ({
+    [EButtonRadius.SMALL]: X_MEDIUM_BORDER_RADIUS,
+    [EButtonRadius.NORMAL]: X_LARGE_BORDER_RADIUS
+  }?.[radius])
+
+  const getButtonContainer = () => ({
+    [EButtonContainer.CONTAINER]: styles.container,
+    [EButtonContainer.CONTAINER_REVERSE_BETWEEN]: styles.containerReverseBetween
+  }?.[container])
+
 
   const containerProps = {
     disabled: disabled || loading,
-    style: [{ ...styles.button, padding: buttonSize.button, width }, ...getButtonType().background, disabled || loading ? { opacity: 0.7 } : {}, style],
+    style: [
+      {
+        padding: buttonSize.button,
+        width,
+        borderRadius: getButtonRadius()
+      }, ...getButtonType().background, disabled || loading ? { opacity: 0.7 } : {}, style],
     activeOpacity: 0.5,
     testID: testId,
     ...props
@@ -117,7 +169,7 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
   const renderContent = () => {
     if (loading) return <ActivityIndicator color={'#E4F2E4'} />;
     return (
-      <View style={styles.container}>
+      <View style={getButtonContainer()}>
         {glyph && <NetzerIcon glyph={glyph} color={getButtonColor()} size={buttonSize.icon.size} />}
         <Text style={{ ...styles.text, color: getButtonColor() }}>{text}</Text>
       </View >
@@ -145,14 +197,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  button: {
-    borderRadius: X_MEDIUM_BORDER_RADIUS
+  containerReverseBetween: {
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   primary: {
     backgroundColor: COLOR_PRIMARY
   },
   primaryLight: {
     backgroundColor: "#b4e1ff"
+  },
+  primaryLightOutline: {
+    backgroundColor: "#F1F7FB",
+    borderColor: COLOR_PRIMARY,
+    borderWidth: 1
   },
   primaryOutline: {
     borderColor: COLOR_PRIMARY,
