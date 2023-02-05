@@ -2,6 +2,7 @@ import { FONT_SIZE } from '##theme/typography.constant';
 import React, { ReactNode, useCallback, useMemo } from 'react';
 import { StyleProp, StyleSheet, Text, TextProps, TextStyle } from 'react-native';
 import { brandStyles, coreStyles, customStyles } from './netzer-text.style';
+import { SharedElement } from 'react-navigation-shared-element';
 
 type TBrandStyles = typeof brandStyles;
 type TCoreStyles = typeof coreStyles;
@@ -14,24 +15,26 @@ interface NetzerTextProps extends TextProps {
   textColor?: any;
   ellipsizeAtLine?: number;
   fontStyle?: any;
-  type?: TTitleSizes
+  type?: TTitleSizes;
+  sharedElement?: boolean;
+  sharedElementId?: string;
 }
-
 
 enum ETitleSizes {
   TITLE = 'TITLE',
   SUBTITLE = 'SUBTITLE',
-  TEXT = 'TEXT',
+  TEXT = 'TEXT'
 }
 
-type TTitleSizes = 'TITLE' | 'SUBTITLE' | 'TEXT'
+type TTitleSizes = 'TITLE' | 'SUBTITLE' | 'TEXT';
 
 export const NetzerText: React.FC<NetzerTextProps> = ({
   text,
   styleName = 'NORMAL',
   ellipsizeAtLine = 0,
-  type = "TEXT",
-  // fontStyle,
+  type = 'TEXT',
+  sharedElement,
+  sharedElementId,
   ...rest
 }: NetzerTextProps) => {
   const { style, ...otherTextProps } = rest;
@@ -46,16 +49,18 @@ export const NetzerText: React.FC<NetzerTextProps> = ({
   //   [fontFamily, style, textStyle]
   // );
 
-
   const getTitleSize = useCallback(() => {
-    return ({
+    return {
       [ETitleSizes.TITLE]: styles.title,
       [ETitleSizes.SUBTITLE]: styles.subtitle,
       [ETitleSizes.TEXT]: styles.text
-    }?.[type]);
-  }, [type])
+    }?.[type];
+  }, [type]);
 
-  const styleProps: StyleProp<TextStyle> = useMemo(() => [textStyle, undefined, style, getTitleSize()], [getTitleSize, style, textStyle]);
+  const styleProps: StyleProp<TextStyle> = useMemo(
+    () => [textStyle, undefined, style, getTitleSize()],
+    [getTitleSize, style, textStyle]
+  );
 
   const props = {
     ...(ellipsizeAtLine > 0 && {
@@ -64,11 +69,14 @@ export const NetzerText: React.FC<NetzerTextProps> = ({
     ...otherTextProps
   };
 
-  return (
+  const TextComponent = (
     <Text style={styleProps} {...props}>
       {text}
     </Text>
   );
+
+  const Content = sharedElement ? <SharedElement id={sharedElementId!}>{TextComponent}</SharedElement> : TextComponent;
+  return Content;
 };
 
 const styles = StyleSheet.create({
@@ -81,7 +89,5 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: FONT_SIZE.NORMAL
   },
-  text: {
-
-  }
-})
+  text: {}
+});
