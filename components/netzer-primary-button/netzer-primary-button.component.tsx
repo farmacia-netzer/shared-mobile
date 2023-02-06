@@ -24,6 +24,7 @@ enum EButtonTypes {
   SECONDARY = 'SECONDARY',
   TRANSPARENT = 'TRANSPARENT',
   WHITE_BLUR = 'WHITE_BLUR',
+  WHITE_LIGHT_BLUR = 'WHITE_LIGHT_BLUR', 
   GRAY_OUTLINE = 'GRAY_OUTLINE',
   GRAY_TRANSPARENT = 'GRAY_TRANSPARENT',
   DANGER_TRANSPARENT = 'DANGER_TRANSPARENT',
@@ -59,6 +60,7 @@ type TButtonTypes =
   | 'GRAY_OUTLINE'
   // white
   | "WHITE_BLUR"
+  | "WHITE_LIGHT_BLUR"
   // danger
   | 'DANGER_TRANSPARENT';
 
@@ -124,6 +126,7 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
       [EButtonTypes.SECONDARY]: { background: [styles.secondary] },
       [EButtonTypes.TRANSPARENT]: { background: [styles.PrimaryTransparent] },
       [EButtonTypes.WHITE_BLUR]: { background: [styles.whiteBlur] },
+      [EButtonTypes.WHITE_LIGHT_BLUR]: { background: [styles.whiteLightBlur] },
       [EButtonTypes.GRAY_OUTLINE]: { background: [styles.grayOutLine] },
       [EButtonTypes.GRAY_TRANSPARENT]: { background: [styles.PrimaryTransparent] }
     }?.[type]);
@@ -139,6 +142,7 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
     [EButtonTypes.DANGER_TRANSPARENT]: 'red',
     [EButtonTypes.TRANSPARENT]: COLOR_PRIMARY,
     [EButtonTypes.WHITE_BLUR]: COLOR_PRIMARY,
+    [EButtonTypes.WHITE_LIGHT_BLUR]: 'white',
     [EButtonTypes.GRAY_TRANSPARENT]: GRAY_SCALE.GRAY_70
   }?.[type])
 
@@ -225,6 +229,9 @@ const styles = StyleSheet.create({
   },
   whiteBlur: {
     backgroundColor: "white"
+  },
+  whiteLightBlur: {
+    backgroundColor: '#0083d9'
   },
   grayOutLine: {
     borderColor: '#E7E7E7',

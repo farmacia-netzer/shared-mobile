@@ -2,11 +2,19 @@ import RadioCheck from '##assets/svg/radio-check.svg';
 import RadioUnCheck from '##assets/svg/radio-uncheck.svg';
 
 import { NORMAL_MARGIN, SMALL_MARGIN, XX_LARGE_SPACING } from "##theme/dimensions.constant";
-import React, { useCallback, useMemo } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import React, { ReactNode, useCallback, useMemo } from "react";
+import { Pressable, StyleProp, StyleSheet, ViewStyle } from "react-native";
 
-export const WLRadioButton = ({ selected, onChange, value, children }) => {
-    const Icon = selected ? RadioCheck : RadioUnCheck
+interface WLRadioButtonProps {
+    selected: any
+    onChange: Function
+    value: string
+    children: ReactNode
+    customStyles?: StyleProp<ViewStyle>
+}
+
+export const WLRadioButton = ({ selected, onChange, value, children, customStyles }: WLRadioButtonProps) => {
+    const Icon = useMemo(() => selected ? RadioCheck : RadioUnCheck, [selected])
 
     const onPress = useCallback(() => {
         onChange(value);
@@ -18,7 +26,7 @@ export const WLRadioButton = ({ selected, onChange, value, children }) => {
 
     return (
         <Pressable
-            style={styles.item}
+            style={[styles.item, customStyles]}
             accessibilityRole="radio"
             onPress={onPress}
             accessibilityState={getAccessibilityState}
