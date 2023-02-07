@@ -2,10 +2,12 @@ import { ICON_GLYPH_MAP } from '##component/netzer-icon/netzer-icon.constant';
 import { NetzerPrimaryButton } from '##component/netzer-primary-button/netzer-primary-button.component';
 import { NetzerText } from '##component/netzer-text';
 import { useNetzerNavigation } from '##hooks/useNetzerNavigation';
+import { actions } from '##redux/slices/app/app.slice';
 import { COLOR_PRIMARY } from '##theme/colors.constant';
 import { FONT_SIZE } from '##theme/typography.constant';
 import React, { ReactNode, useCallback, useEffect } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 
 interface NetzerModalProps {
@@ -13,10 +15,12 @@ interface NetzerModalProps {
   onClose?: Function
   children: ReactNode
   withoutBoxPadding?: boolean;
+  position?: number
 }
 
-export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = false }: NetzerModalProps) => {
+export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = false, position = 1 }: NetzerModalProps) => {
   const { goBack, navigation } = useNetzerNavigation()
+  const dispatch = useDispatch()
 
   const onCloseModal = useCallback(() => {
     onClose ? onClose() : goBack()
@@ -44,6 +48,13 @@ export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = fals
     })
 
   }, [closeButton, navigation, onCloseModal, title, titleSection]);
+
+  useEffect(() => {
+    dispatch(actions.setAppState({ hideTabBar: true }))
+    return () => {
+      if (position === 1) { dispatch(actions.setAppState({ hideTabBar: false })) }
+    }
+  }, [dispatch, position]);
 
   return (
     <View style={{ ...styles.container }}>
