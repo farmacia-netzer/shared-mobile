@@ -107,7 +107,8 @@ export const ICON_GLYPH_MAP: ICON_GLYPH = {
   SAVE_OUTLINE: { family: 'ionicons', name: 'save-outline' },
   CLOSE_OUTLINE: { family: 'ionicons', name: 'close-outline' },
   CLOSE_SESSION: { family: 'ionicons', name: 'ios-exit-outline' },
-  PRICETAGS_SESSION: { family: 'ionicons', name: 'pricetags-outline' }
+  PRICETAGS_SESSION: { family: 'ionicons', name: 'pricetags-outline' },
+  HEART_SESSION: { family: 'ionicons', name: 'heart-outline' }
 };
 
 export const DEFAULT_WL_PAYMENT_CARD_ICON = ICON_GLYPH_MAP.CC_VISA;
