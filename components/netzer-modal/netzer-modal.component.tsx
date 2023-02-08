@@ -6,7 +6,8 @@ import { actions } from '##redux/slices/app/app.slice';
 import { COLOR_PRIMARY } from '##theme/colors.constant';
 import { FONT_SIZE } from '##theme/typography.constant';
 import React, { ReactNode, useCallback, useEffect } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 
 
@@ -20,6 +21,7 @@ interface NetzerModalProps {
 
 export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = false, position = 1 }: NetzerModalProps) => {
   const { goBack, navigation } = useNetzerNavigation()
+  const { bottom } = useSafeAreaInsets()
   const dispatch = useDispatch()
 
   const onCloseModal = useCallback(() => {
@@ -58,12 +60,13 @@ export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = fals
 
   return (
     <View style={{ ...styles.container }}>
-      <SafeAreaView style={{
+      <View style={{
         ...styles.boxContainer,
-        ...(withoutBoxPadding ? { paddingHorizontal: 0 } : { paddingHorizontal: '7%' })
+        paddingBottom: bottom,
+        ...(withoutBoxPadding ? { paddingHorizontal: 0 } : { paddingHorizontal: '4%' })
       }}>
         {children}
-      </SafeAreaView>
+      </View>
     </View>
   )
 }

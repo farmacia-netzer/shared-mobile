@@ -1,73 +1,112 @@
-import { FlatList, ListRenderItem, RefreshControl, StyleSheet } from 'react-native';
-import React, { useCallback, useEffect, useState } from 'react';
-// import { NetzerLoadingIndicator } from './loading-indicator/loading-indicator.component';
+import EmptyBox from '##assets/svg/EmptyBox.svg';
+import { keyExtractor } from '##common/key-extractor';
+import { NetzerListEmpty } from '##component/netzer-list-empty/netzer-list-empty.component';
+import { NetzerLoading } from '##component/netzer-loading/netzert-loading.component';
+import { NetzerText } from '##component/netzer-text';
+import { useDispatch, useSelector } from '##redux/store';
+import { usePagination } from '##shared/hooks/usePagination';
+import { FONT_SIZE } from '##theme/typography.constant';
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
+import { Animated, Dimensions, ListRenderItem, RefreshControl, StyleSheet, View } from 'react-native';
 
-interface NetzerListProps {
-  data: any[];
-  size?: number;
-  count?: number;
-  isLoading?: boolean;
-  renderItem: ListRenderItem<any>;
-  EmptyState?: React.ReactElement;
-  horizontal?: boolean;
-  allowRefresh?: boolean;
-  onEndReached?(page: number, size: number): void;
+interface ListDataProps {
+    title?: string;
+    renderItem: ListRenderItem<any> | null | undefined
+    parameters?: any
+    isLoadingSelector: any
+    countSelector: any
+    dataSelector: any
+    horizontal?: boolean
+    loadDataAction: any
+    loadMoreDataAction?: any
+    PAGE_SIZE?: number
+    props?: any
+    EmptySection?: ReactNode
 }
+const defaultParams = {}
 
-export const NetzerList: React.FC<NetzerListProps> = ({
-  data,
-  count,
-  renderItem,
-  onEndReached,
-  EmptyState,
-  size = 20,
-  horizontal = false,
-  isLoading = false,
-  allowRefresh = true
-}: NetzerListProps) => {
-  const [page, setPage] = useState(0);
-  const [refreshing] = useState(false);
+const windowHeight = Dimensions.get('window').height;
 
-  useEffect(() => {}, [page]);
+export const NetzerList = ({
+    title,
+    countSelector,
+    dataSelector,
+    isLoadingSelector,
+    renderItem,
+    PAGE_SIZE = 20,
+    loadDataAction,
+    loadMoreDataAction,
+    parameters = defaultParams,
+    horizontal = false,
+    props,
+    EmptySection
+}: ListDataProps) => {
+    const dispatch = useDispatch();
 
-  const loadMore = count / size > page + 1;
-  const keyExtractor = useCallback((item, index) => item?.id ?? `${item}_${index}`, []);
-  // const renderFooter = useCallback(() => loadMore && <NetzerLoadingIndicator />, [loadMore]);
+    const data = useSelector(dataSelector);
+    const isLoading = useSelector(isLoadingSelector);
+    const count: number = useSelector(countSelector);
 
-  const _onEndReached = useCallback(() => {
-    if (loadMore) {
-      onEndReached?.(page + 1, size);
-      setPage((prev) => prev + 1);
-    }
-  }, [loadMore, onEndReached, page, size]);
+    const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
+    const { page, setPage, shouldLoadMore } = usePagination(count!, PAGE_SIZE);
 
-  const onRefresh = useCallback(() => {
-    onEndReached?.(page, size);
-  }, [onEndReached, page, size]);
+    const loadData = useCallback(() => {
+        dispatch(loadDataAction(0, PAGE_SIZE, parameters));
+    }, [PAGE_SIZE, dispatch, loadDataAction, parameters]);
 
-  return (
-    <FlatList
-      data={data}
-      numColumns={1}
-      refreshing={isLoading}
-      horizontal={horizontal}
-      renderItem={renderItem}
-      initialNumToRender={20}
-      stickyHeaderHiddenOnScroll
-      onEndReachedThreshold={0.3}
-      keyExtractor={keyExtractor}
-      ListEmptyComponent={EmptyState}
-      showsVerticalScrollIndicator={false}
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={styles.container}
-      {...(onEndReached && { onEndReached: _onEndReached })}
-      {...(allowRefresh && { refreshControl: <RefreshControl refreshing={refreshing} onRefresh={onRefresh} /> })}
-    />
-  );
+    const loadMoreData = useCallback((pag: number, size: number) => {
+        dispatch(loadMoreDataAction(pag, size, setIsLoadingMore, parameters));
+    }, [dispatch, loadMoreDataAction, parameters]);
+
+    useEffect(() => {
+        loadData();
+    }, [loadData]);
+
+    const _onEndReached = useCallback(() => {
+        if (shouldLoadMore) {
+            loadMoreData?.(page + 1, 10);
+            setPage((prev) => prev + 1);
+        }
+    }, [shouldLoadMore, loadMoreData, page, setPage]);
+
+    return (
+        <View>
+            {title && <NetzerText style={styles.title} text={title} />}
+            <Animated.FlatList
+                data={data as any}
+                renderItem={renderItem}
+                refreshing={isLoading as boolean}
+                refreshControl={<RefreshControl refreshing={isLoading as boolean} />}
+                horizontal={horizontal}
+                initialNumToRender={PAGE_SIZE}
+                stickyHeaderHiddenOnScroll
+                onEndReachedThreshold={0.5}
+                ListFooterComponent={isLoadingMore ? <NetzerLoading /> : null}
+                keyExtractor={keyExtractor}
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+                pagingEnabled
+                ListEmptyComponent={
+                    <View style={{ ...styles.emptyContainer, height: windowHeight - (windowHeight * 0.50) }}>
+                        {EmptySection ? EmptySection : <NetzerListEmpty Image={EmptyBox} text="No hay nada para mostrar" />}
+                    </View>
+                }
+                {...loadMoreDataAction && { onEndReached: _onEndReached }}
+                {...props}
+            />
+        </View>
+    );
 };
-
+const windowWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1
-  }
+    title: {
+        fontSize: FONT_SIZE.LARGE,
+        fontWeight: '700',
+        marginTop: 20
+    },
+    emptyContainer: {
+        height: 250,
+        justifyContent: "center",
+        width: windowWidth
+    }
 });
