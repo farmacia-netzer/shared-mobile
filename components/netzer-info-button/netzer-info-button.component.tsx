@@ -9,7 +9,7 @@ interface NetzerInfoButtonProps {
     title: string
     description: string
     Icon: Function;
-    buttonRightText: string
+    buttonRightText?: string
 }
 
 export const NetzerInfoButton = ({ title, description, Icon, buttonRightText }: NetzerInfoButtonProps) => {
@@ -17,12 +17,12 @@ export const NetzerInfoButton = ({ title, description, Icon, buttonRightText }: 
     return (
         <View style={styles.container}>
             <Icon style={styles.image} width={40} height={15} />
-            <View>
+            <View style={styles.content}>
                 <NetzerText text={title} style={styles.title} />
                 <NetzerText text={description} type="SUBTITLE" />
             </View>
             <View>
-                <NetzerPrimaryButton onPress={test} type="TRANSPARENT" text={buttonRightText} />
+                {buttonRightText && <NetzerPrimaryButton onPress={test} type="TRANSPARENT" text={buttonRightText} size="SMALL" />}
             </View>
         </View>
     );
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
         marginVertical: 4
     },
     image: {},
+    content:{ flex: 1},
     title: {
         fontWeight: '700',
         marginBottom: 4,
