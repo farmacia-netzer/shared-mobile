@@ -108,7 +108,10 @@ export const ICON_GLYPH_MAP: ICON_GLYPH = {
   CLOSE_OUTLINE: { family: 'ionicons', name: 'close-outline' },
   CLOSE_SESSION: { family: 'ionicons', name: 'ios-exit-outline' },
   PRICETAGS_SESSION: { family: 'ionicons', name: 'pricetags-outline' },
-  HEART_SESSION: { family: 'ionicons', name: 'heart-outline' }
+  HEART_SESSION: { family: 'ionicons', name: 'heart-outline' },
+  CHECK_CIRCLE_SHARP: { family: 'ionicons', name: 'checkmark-circle-sharp' },
+  CHECK_OUTLINE: { family: 'ionicons', name: 'checkmark-outline' },
+  TIME_OUTLINE: { family: 'ionicons', name: 'time-outline' }
 };
 
 export const DEFAULT_WL_PAYMENT_CARD_ICON = ICON_GLYPH_MAP.CC_VISA;
