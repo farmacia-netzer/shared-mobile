@@ -24,7 +24,7 @@ enum EButtonTypes {
   SECONDARY = 'SECONDARY',
   TRANSPARENT = 'TRANSPARENT',
   WHITE_BLUR = 'WHITE_BLUR',
-  WHITE_LIGHT_BLUR = 'WHITE_LIGHT_BLUR', 
+  WHITE_LIGHT_BLUR = 'WHITE_LIGHT_BLUR',
   GRAY_OUTLINE = 'GRAY_OUTLINE',
   GRAY_TRANSPARENT = 'GRAY_TRANSPARENT',
   DANGER_TRANSPARENT = 'DANGER_TRANSPARENT',
@@ -175,7 +175,7 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
     return (
       <View style={getButtonContainer()}>
         {glyph && <NetzerIcon glyph={glyph} color={getButtonColor()} size={buttonSize.icon.size} />}
-        <Text style={{ ...styles.text, color: getButtonColor() }}>{text}</Text>
+        {typeof text === 'string' ? <Text style={{ ...styles.text, color: getButtonColor() }}>{text}</Text> : text}
       </View >
     );
   };
