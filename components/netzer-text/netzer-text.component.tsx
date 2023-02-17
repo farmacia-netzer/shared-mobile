@@ -2,7 +2,6 @@ import { FONT_SIZE } from '##theme/typography.constant';
 import React, { ReactNode, useCallback, useMemo } from 'react';
 import { StyleProp, StyleSheet, Text, TextProps, TextStyle } from 'react-native';
 import { brandStyles, coreStyles, customStyles } from './netzer-text.style';
-import { SharedElement } from 'react-navigation-shared-element';
 
 type TBrandStyles = typeof brandStyles;
 type TCoreStyles = typeof coreStyles;
@@ -16,8 +15,6 @@ interface NetzerTextProps extends TextProps {
   ellipsizeAtLine?: number;
   fontStyle?: any;
   type?: TTitleSizes;
-  sharedElement?: boolean;
-  sharedElementId?: string;
 }
 
 enum ETitleSizes {
@@ -33,8 +30,6 @@ export const NetzerText: React.FC<NetzerTextProps> = ({
   styleName = 'NORMAL',
   ellipsizeAtLine = 0,
   type = 'TEXT',
-  sharedElement,
-  sharedElementId,
   ...rest
 }: NetzerTextProps) => {
   const { style, ...otherTextProps } = rest;
@@ -69,14 +64,11 @@ export const NetzerText: React.FC<NetzerTextProps> = ({
     ...otherTextProps
   };
 
-  const TextComponent = (
+  return (
     <Text style={styleProps} {...props}>
       {text}
     </Text>
   );
-
-  const Content = sharedElement ? <SharedElement id={sharedElementId!}>{TextComponent}</SharedElement> : TextComponent;
-  return Content;
 };
 
 const styles = StyleSheet.create({
