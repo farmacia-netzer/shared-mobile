@@ -76,7 +76,7 @@ export const NetzerTextInput: React.FC<NetzerTextInputProps> = ({
   keyboardType = 'ascii-capable',
   testID,
   icon,
-  onIconPress,
+  // onIconPress,
   iconTestID,
   blurOnSubmit = false,
   editable = true,

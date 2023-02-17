@@ -1,14 +1,32 @@
+import { NetzerCheckbox } from '##component/netzer-checkbox';
 import { NetzerFieldInput } from '##component/netzer-text-input/netzer-field-input';
 import React, { useCallback } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 export const NetzerField = ({ type, fieldName, fieldConfig, onFieldSubmit, fieldStyle = {}, styleName = '' }) => {
+
+  // console.log(JSON.stringify({
+  //   type,
+  //   fieldName,
+  //   fieldConfig,
+  //   onFieldSubmit,
+  //   fieldStyle,
+  //   styleName
+  // }, null, 2))
+
   const { control, formState } = useFormContext();
   const { errors } = formState;
 
   const getFormRenderer = useCallback(
     ({ field: { onChange, onBlur, value } }) => {
       switch (type) {
+        case 'checkbox':
+          return (
+            <NetzerCheckbox
+              value={value}
+              label={fieldConfig?.label}
+              onChange={onChange} />
+          )
         default:
           return (
             <NetzerFieldInput

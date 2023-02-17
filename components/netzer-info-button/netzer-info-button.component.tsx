@@ -1,28 +1,28 @@
-import { NetzerPrimaryButton } from '##component/netzer-primary-button/netzer-primary-button.component';
 import { NetzerText } from '##component/netzer-text';
+import { textShorter } from '##shared/helpers/text.helpers';
 import { GRAY_SCALE } from '##theme/grayscale.constant';
 import { FONT_SIZE } from '##theme/typography.constant';
-import React, { useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { ReactNode } from 'react';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 interface NetzerInfoButtonProps {
     title: string
     description: string
     Icon: Function;
-    buttonRightText?: string
+    rightSection?: ReactNode
+    containerStyles?: StyleProp<ViewStyle> | any
 }
 
-export const NetzerInfoButton = ({ title, description, Icon, buttonRightText }: NetzerInfoButtonProps) => {
-    const test = useCallback(() => { }, []);
+export const NetzerInfoButton = ({ title, description, Icon, rightSection, containerStyles }: NetzerInfoButtonProps) => {
     return (
-        <View style={styles.container}>
-            <Icon style={styles.image} width={40} height={15} />
+        <View style={{ ...styles.container, ...(containerStyles && containerStyles) }}>
+            <Icon style={styles.image} width={40} height={20} />
             <View style={styles.content}>
                 <NetzerText text={title} style={styles.title} />
-                <NetzerText text={description} type="SUBTITLE" />
+                <NetzerText text={textShorter(description, rightSection ? 50 : 70)} type="SUBTITLE" />
             </View>
             <View>
-                {buttonRightText && <NetzerPrimaryButton onPress={test} type="TRANSPARENT" text={buttonRightText} size="SMALL" />}
+                {rightSection}
             </View>
         </View>
     );
@@ -36,12 +36,13 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         borderColor: GRAY_SCALE.GRAY_70,
         borderRadius: 20,
+        height: 75,
         paddingHorizontal: 13,
         paddingVertical: 8,
         marginVertical: 4
     },
     image: {},
-    content:{ flex: 1},
+    content: { flex: 1 },
     title: {
         fontWeight: '700',
         marginBottom: 4,

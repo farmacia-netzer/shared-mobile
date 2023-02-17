@@ -60,12 +60,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     marginVertical: NORMAL_MARGIN,
     justifyContent: 'flex-start',
+    alignItems:"center",
     flexDirection: 'row'
   },
 
   checkboxLabel: {
     color: GRAY_SCALE.BLACK,
     marginHorizontal: NORMAL_MARGIN,
-    fontSize: FONT_SIZE.LARGE
+    fontSize: FONT_SIZE.NORMAL
   }
 });

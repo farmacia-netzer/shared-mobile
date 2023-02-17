@@ -15,7 +15,7 @@ interface NetzerFormProps {
 }
 export interface IFieldsForm {
   [key: string]: {
-    type: 'text';
+    type: 'text' | 'checkbox';
     configuration: NetzerTextInputProps;
   };
 }
@@ -69,7 +69,7 @@ export const NetzerForm: React.FC<NetzerFormProps> = ({
           {fields.map((field: NetzerTextInputProps, index) => (
             <NetzerField
               key={'field-' + index}
-              type={field.type}
+              type={FieldsWithoutConversion[field.name]?.type}
               fieldName={field.name}
               fieldConfig={field}
               onFieldSubmit={methods.handleSubmit(_onSubmit)}
