@@ -111,7 +111,8 @@ export const ICON_GLYPH_MAP: ICON_GLYPH = {
   HEART_SESSION: { family: 'ionicons', name: 'heart-outline' },
   CHECK_CIRCLE_SHARP: { family: 'ionicons', name: 'checkmark-circle-sharp' },
   CHECK_OUTLINE: { family: 'ionicons', name: 'checkmark-outline' },
-  TIME_OUTLINE: { family: 'ionicons', name: 'time-outline' }
+  TIME_OUTLINE: { family: 'ionicons', name: 'time-outline' },
+  CAMERA_OUTLINE: { family: 'ionicons', name: 'camera-outline' }
 };
 
 export const DEFAULT_WL_PAYMENT_CARD_ICON = ICON_GLYPH_MAP.CC_VISA;
