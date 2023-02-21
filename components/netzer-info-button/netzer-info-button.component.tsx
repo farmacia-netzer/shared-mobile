@@ -18,7 +18,7 @@ export const NetzerInfoButton = ({ title, description, Icon, rightSection, conta
         <View style={{ ...styles.container, ...(containerStyles && containerStyles) }}>
             <Icon style={styles.image} width={40} height={20} />
             <View style={styles.content}>
-                <NetzerText text={title} style={styles.title} />
+                <NetzerText text={textShorter(title, 29)} style={styles.title} />
                 <NetzerText text={textShorter(description, rightSection ? 50 : 70)} type="SUBTITLE" />
             </View>
             <View>
