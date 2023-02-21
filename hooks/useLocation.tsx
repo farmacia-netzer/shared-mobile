@@ -4,16 +4,17 @@ import Geolocation from 'react-native-geolocation-service';
 // import { PermissionsContext } from '##context/PermissionsContext';
 import { useIsMountedRef } from '##shared/hooks/useIsMountedRef';
 import { PermissionsContext } from '##shared/context/PermissionsContext';
+import MapView, { Camera } from 'react-native-maps';
 
 export interface LocationPosition {
   latitude: number;
   longitude: number;
 }
 
-export const useLocation = () => {
+export const useLocation = (mapRef?: React.MutableRefObject<MapView | undefined>) => {
   const watchId = useRef<number>();
   const isMountedRef = useIsMountedRef();
-  const [currentLocation, setCurrentLocation] = useState<LocationPosition>({ latitude: 0, longitude: 0 });
+  const [currentLocation, setCurrentLocation] = useState<LocationPosition>({ latitude: 18.5194095, longitude: -69.8279453 });
   const [hasLocation, setHasLocation] = useState<boolean>(false);
 
   const permissionContext = useContext(PermissionsContext);
@@ -54,12 +55,24 @@ export const useLocation = () => {
   };
 
   useEffect(() => {
-    getCurrentLocation().then((location) => {
-      if (!isMountedRef.current) return;
-      setCurrentLocation(location);
-      setHasLocation(true);
-    });
+    getCurrentLocation()
+      .then((location) => {
+        if (!isMountedRef.current) return;
+        setCurrentLocation(location);
+        setHasLocation(true);
+      });
   }, [getCurrentLocation, isMountedRef]);
+
+  const centerPosition = useCallback((position: LocationPosition) => {
+    mapRef?.current?.getCamera()
+      .then((cam: Camera) => {
+        if (cam?.zoom) cam.zoom = 20;
+        mapRef?.current?.animateCamera({
+          ...cam,
+          center: position
+        });
+      });
+  }, [mapRef]);
 
   return {
     getCurrentLocation,
@@ -67,6 +80,7 @@ export const useLocation = () => {
     stopwatchPosition,
     currentLocation,
     hasLocation,
+    centerPosition,
     requestPermission: permissionContext.askLocationPermission,
     permissionStatus: permissionContext.permission.locationStatus
   };

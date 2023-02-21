@@ -12,8 +12,7 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
-
-const MAP_KEY = 'AIzaSyC9E7-i8ULBWrV6gjO7USfdHaDSbHcPUCA';
+import { appConfig } from '##config/app.config';
 
 export const NetzerMap = ({ route }) => {
     const mapRef = useRef<MapView>();
@@ -81,7 +80,7 @@ export const NetzerMap = ({ route }) => {
                     onTouchStart={onTouchStart}
                 >
                     <MapViewDirections
-                        apikey={MAP_KEY}
+                        apikey={appConfig.MAP_KEY as string}
                         origin={currentLocation}
                         destination={destination}
                         strokeColor={COLOR_PRIMARY}

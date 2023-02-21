@@ -5,7 +5,7 @@ import { useNetzerNavigation } from '##hooks/useNetzerNavigation';
 import { actions } from '##redux/slices/app/app.slice';
 import { COLOR_PRIMARY } from '##theme/colors.constant';
 import { FONT_SIZE } from '##theme/typography.constant';
-import React, { ReactNode, useCallback, useEffect } from 'react';
+import React, { ReactNode, useCallback, useEffect, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
@@ -16,10 +16,11 @@ interface NetzerModalProps {
   onClose?: Function
   children: ReactNode
   withoutBoxPadding?: boolean;
+  withSafeAreaBottom?: boolean;
   position?: number
 }
 
-export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = false, position = 1 }: NetzerModalProps) => {
+export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = false, position = 1, withSafeAreaBottom = true }: NetzerModalProps) => {
   const { goBack, navigation } = useNetzerNavigation()
   const { bottom } = useSafeAreaInsets()
   const dispatch = useDispatch()
@@ -58,13 +59,16 @@ export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = fals
     }
   }, [dispatch, position]);
 
+
+  const containerStyles = useMemo(() => ({
+    ...styles.boxContainer,
+    paddingBottom: withSafeAreaBottom ? bottom : 0,
+    ...(withoutBoxPadding ? { paddingHorizontal: 0 } : { paddingHorizontal: '4%' })
+  }), [bottom, withSafeAreaBottom, withoutBoxPadding])
+
   return (
     <View style={{ ...styles.container }}>
-      <View style={{
-        ...styles.boxContainer,
-        paddingBottom: bottom,
-        ...(withoutBoxPadding ? { paddingHorizontal: 0 } : { paddingHorizontal: '4%' })
-      }}>
+      <View style={containerStyles}>
         {children}
       </View>
     </View>
