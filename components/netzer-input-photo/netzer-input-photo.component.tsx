@@ -7,14 +7,15 @@ import { GestureResponderEvent, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface NetzerInputPhotoProps {
+    description: string;
     onPress: (((event: GestureResponderEvent) => void) & (() => void)) | undefined
 }
 
-export const NetzerInputPhoto = ({ onPress }: NetzerInputPhotoProps) => {
+export const NetzerInputPhoto = ({ description, onPress }: NetzerInputPhotoProps) => {
     return (
         <TouchableOpacity style={styles.photoInput} activeOpacity={0.5} onPress={onPress}>
             <NetzerIcon glyph={ICON_GLYPH_MAP.CAMERA_OUTLINE} color={GRAY_SCALE.GRAY_50} size={30} />
-            <NetzerText text={"Agregar foto de seguro"} style={styles.description} />
+            <NetzerText text={description} style={styles.description} />
         </TouchableOpacity>
     );
 };

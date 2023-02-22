@@ -6,11 +6,12 @@ import { styles } from './netzer-alert.styles'
 interface NetzerAlertProps {
     title: string
     description: string
-    type: 'PRIMARY' | 'SECONDARY'
+    type: 'PRIMARY' | 'SECONDARY' | "DANGER"
 }
 enum ENetzerAlert {
     PRIMARY = "PRIMARY",
-    SECONDARY = "SECONDARY"
+    SECONDARY = "SECONDARY",
+    DANGER = "DANGER",
 }
 
 
@@ -27,6 +28,11 @@ export const NetzerAlert = ({ title, description, type }: NetzerAlertProps) => {
                 container: styles.secondaryContainer,
                 title: styles.secondaryTitle,
                 description: styles.secondaryDescription
+            },
+            [ENetzerAlert.DANGER]: {
+                container: styles.dangerContainer,
+                title: styles.dangerTitle,
+                description: styles.dangerDescription
             }
         }?.[type]);
     }, [type])
