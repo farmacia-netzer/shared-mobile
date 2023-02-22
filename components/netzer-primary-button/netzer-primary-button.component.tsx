@@ -1,19 +1,18 @@
 import React, { ReactNode, useCallback, useMemo } from 'react';
 import {
   ActivityIndicator,
-  Keyboard, StyleProp, StyleSheet,
-  Text, TouchableOpacity,
+  Keyboard, StyleProp, Text, TouchableOpacity,
   View,
   ViewStyle
 } from 'react-native';
 import { TouchableOpacity as RNTouchableOpacity } from 'react-native-gesture-handler';
 import { GLYPH } from '../netzer-icon/netzer-icon.constant';
 
-import { COLOR_PRIMARY, COLOR_SECONDARY } from '##theme/colors.constant';
+import { COLOR_PRIMARY } from '##theme/colors.constant';
 import { MEDIUM_PADDING, SMALL_SPACING, X_LARGE_BORDER_RADIUS, X_MEDIUM_BORDER_RADIUS } from '##theme/dimensions.constant';
-import { FONT_SIZE } from '##theme/typography.constant';
-import { NetzerIcon } from '../netzer-icon/netzer-icon.component';
 import { GRAY_SCALE } from '##theme/grayscale.constant';
+import { NetzerIcon } from '../netzer-icon/netzer-icon.component';
+import { styles } from './netzer-button.styles';
 
 
 enum EButtonTypes {
@@ -194,56 +193,3 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  containerReverseBetween: {
-    flexDirection: 'row-reverse',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-  primary: {
-    backgroundColor: COLOR_PRIMARY
-  },
-  primaryLight: {
-    backgroundColor: "#b4e1ff"
-  },
-  primaryLightOutline: {
-    backgroundColor: "#F1F7FB",
-    borderColor: COLOR_PRIMARY,
-    borderWidth: 1
-  },
-  primaryOutline: {
-    borderColor: COLOR_PRIMARY,
-    borderWidth: 1
-  },
-  secondary: {
-    backgroundColor: COLOR_SECONDARY
-  },
-  PrimaryTransparent: {
-    backgroundColor: "transparent"
-  },
-  whiteBlur: {
-    backgroundColor: "white"
-  },
-  whiteLightBlur: {
-    backgroundColor: '#0083d9'
-  },
-  grayOutLine: {
-    borderColor: '#E7E7E7',
-    borderWidth: 1
-  },
-  dangerTransparent: {
-    backgroundColor: "transparent"
-  },
-  text: {
-    fontWeight: "600",
-    textAlign: 'center',
-    fontSize: FONT_SIZE.NORMAL
-  }
-});
-

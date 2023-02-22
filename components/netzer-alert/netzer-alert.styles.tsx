@@ -1,4 +1,4 @@
-import { COLOR_PRIMARY_LIGHT, COLOR_PRIMARY, COLOR_SECONDARY, COLOR_SECONDARY_LIGHT } from "##theme/colors.constant";
+import { COLOR_PRIMARY_LIGHT, COLOR_PRIMARY, COLOR_SECONDARY, COLOR_SECONDARY_LIGHT, COLOR_DANGER, COLOR_DANGER_LIGHT } from "##theme/colors.constant";
 import { FONT_SIZE } from "##theme/typography.constant";
 import { StyleProp, StyleSheet, TextStyle, ViewStyle } from "react-native";
 
@@ -29,11 +29,6 @@ export const styles = StyleSheet.create({
         borderColor: COLOR_PRIMARY,
         backgroundColor: COLOR_PRIMARY_LIGHT
     },
-    secondaryContainer: {
-        ...container,
-        borderColor: COLOR_SECONDARY,
-        backgroundColor: COLOR_SECONDARY_LIGHT
-    },
     primaryTitle: {
         ...title,
         color: COLOR_PRIMARY
@@ -42,6 +37,11 @@ export const styles = StyleSheet.create({
         ...description,
         color: COLOR_PRIMARY
     },
+    secondaryContainer: {
+        ...container,
+        borderColor: COLOR_SECONDARY,
+        backgroundColor: COLOR_SECONDARY_LIGHT
+    },
     secondaryTitle: {
         ...title,
         color: COLOR_SECONDARY
@@ -49,6 +49,19 @@ export const styles = StyleSheet.create({
     secondaryDescription: {
         ...description,
         color: COLOR_SECONDARY
+    },
+    dangerContainer: {
+        ...container,
+        borderColor: COLOR_DANGER,
+        backgroundColor: COLOR_DANGER_LIGHT
+    },
+    dangerTitle: {
+        ...title,
+        color: COLOR_DANGER
+    },
+    dangerDescription: {
+        ...description,
+        color: COLOR_DANGER
     }
 
 });

@@ -79,15 +79,22 @@ export const NetzerText: React.FC<NetzerTextProps> = ({
   return Content;
 };
 
+const textStyles = {
+  fontFamily: 'Avenir Next',
+}
 const styles = StyleSheet.create({
   title: {
+    ...textStyles,
     fontSize: FONT_SIZE.LARGE,
     fontWeight: 'bold',
     fontFamily: 'Avenir Next',
     paddingVertical: 3
   },
   subtitle: {
+    ...textStyles,
     fontSize: FONT_SIZE.NORMAL
   },
-  text: {}
+  text: {
+    ...textStyles
+  }
 });
