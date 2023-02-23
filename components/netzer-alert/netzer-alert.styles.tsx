@@ -13,13 +13,14 @@ const container: StyleProp<ViewStyle> = {
 const title: StyleProp<TextStyle> = {
     fontSize: FONT_SIZE.MEDIUM,
     fontWeight: "700",
-    marginBottom: 10,
+    marginVertical: 5,
     fontFamily: 'Avenir Next'
 }
 
 const description: StyleProp<TextStyle> = {
-    fontWeight: '500',
+    fontWeight: '600',
     fontFamily: 'Avenir Next',
+    marginVertical: 5,
     fontSize: FONT_SIZE.NORMAL
 }
 
@@ -63,5 +64,4 @@ export const styles = StyleSheet.create({
         ...description,
         color: COLOR_DANGER
     }
-
 });
