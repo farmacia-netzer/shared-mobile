@@ -80,7 +80,7 @@ export const NetzerText: React.FC<NetzerTextProps> = ({
 };
 
 const textStyles = {
-  fontFamily: 'Avenir Next',
+  fontFamily: 'Avenir Next'
 }
 const styles = StyleSheet.create({
   title: {

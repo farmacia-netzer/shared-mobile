@@ -97,7 +97,7 @@ export const NetzerList = ({
         </View>
     );
 };
-const windowWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
     title: {
         fontSize: FONT_SIZE.LARGE,
@@ -106,7 +106,6 @@ const styles = StyleSheet.create({
     },
     emptyContainer: {
         height: 250,
-        justifyContent: "center",
-        width: windowWidth
+        justifyContent: "center"
     }
 });

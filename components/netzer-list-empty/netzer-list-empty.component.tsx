@@ -1,4 +1,3 @@
-import { BASE_MARGIN, BASE_PADDING } from '##theme/dimensions.constant';
 import { GRAY_SCALE } from '##theme/grayscale.constant';
 import { FONT_SIZE } from '##theme/typography.constant';
 import React, { FC } from 'react';
@@ -25,17 +24,20 @@ const styles = StyleSheet.create({
   empty: {
     flex: 1,
     alignItems: 'center',
+    paddingHorizontal: 30,
     justifyContent: 'center'
   },
   emptyText: {
     fontSize: FONT_SIZE.LARGE,
     marginTop: 30,
-    color: GRAY_SCALE.GRAY_50
+    textAlign: "center",
+    color: GRAY_SCALE.GRAY_70
   },
   description: {
     marginTop: 10,
-    color: GRAY_SCALE.GRAY_50,
+    fontWeight: "500",
+    color: GRAY_SCALE.GRAY_70,
     textAlign: "center",
-    lineHeight: 25,
+    lineHeight: 25
   }
 });
