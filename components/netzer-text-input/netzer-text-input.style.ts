@@ -10,8 +10,7 @@ import {
   MEDIUM_PADDING,
   NORMAL_MARGIN,
   NORMAL_PADDING,
-  SMALL_MARGIN,
-  SMALL_PADDING
+  SMALL_MARGIN
 } from '##theme/dimensions.constant';
 
 export const ICON_SIZE = 20;
@@ -24,21 +23,26 @@ export const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: 'row',
-    alignItems: 'stretch'
+    alignItems: 'center',
+    borderWidth: 1,
+    paddingHorizontal: 15,
+    borderColor: GRAY_SCALE.GRAY_70,
+    borderRadius: 10
   },
   input: {
-    // ...WLTEXT_STYLES.INPUT,
+    alignItems: "center",
     flex: 1,
-
+    fontSize: FONT_SIZE.NORMAL,
+    color: GRAY_SCALE.GRAY_30,
+    fontWeight: "400",
+    fontFamily: 'Avenir Next',
+    paddingVertical: MEDIUM_PADDING,
     ...platformSelect({
       ios: {
-        paddingTop: LARGE_PADDING,
-        paddingBottom: NORMAL_PADDING
+
       },
       android: {
-        paddingTop: MEDIUM_PADDING,
-        paddingBottom: SMALL_PADDING,
-        paddingLeft: 0
+
       }
     })
   },
@@ -59,6 +63,7 @@ export const styles = StyleSheet.create({
     // borderBottomColor: theme.text.NEGATIVE
   },
   iconButton: {
-    paddingHorizontal: NORMAL_PADDING
+    paddingHorizontal: NORMAL_PADDING,
+    fontWeight: "500"
   }
 });

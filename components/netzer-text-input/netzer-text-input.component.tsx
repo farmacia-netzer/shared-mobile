@@ -7,12 +7,11 @@ import { ICON_SIZE, styles } from './netzer-text-input.style';
 
 // import { TEST_ID } from '##services/test-id';
 
-import { NetzerFloatingLabel } from '##component/netzer-floating-label';
 import { NetzerIconButton } from '##component/netzer-icon-button';
 import { ICON_GLYPH_MAP } from '##component/netzer-icon/netzer-icon.constant';
 import { NetzerTextInputMask } from '##component/netzer-text-input-mask';
 import { NetzerText } from '##component/netzer-text/netzer-text.component';
-import { maskedInputText } from '##services/mask';
+import { GRAY_SCALE } from '##theme/grayscale.constant';
 
 export interface NetzerTextInputProps {
   style?: any;
@@ -85,7 +84,7 @@ export const NetzerTextInput: React.FC<NetzerTextInputProps> = ({
   message = '',
   isFloatingLabel = false,
   mask = '',
-  isUnderlined = true,
+  isUnderlined = false,
   showRequirements = false,
   ...rest
 }: NetzerTextInputProps) => {
@@ -144,15 +143,16 @@ export const NetzerTextInput: React.FC<NetzerTextInputProps> = ({
   return (
     <View style={[styles.field, fieldStyle]}>
       <View style={styles.inputContainer}>
-        <NetzerFloatingLabel
-          inputStyle={inputStyle}
-          isFocused={isInputFocused}
-          isVisible={isFloatingLabel}
-          testID={testID + '-FLOATING-LABEL'}
-          placeholder={inputPlaceHolder || ''}
-          placeholderTextColor={placeholderTextColor}
-          value={maskedInputText(value || '', mask).unmasked}
-        />
+        {icon ? (
+          <NetzerIconButton
+            size={ICON_SIZE}
+            testID={iconTestID || ''}
+            color={GRAY_SCALE.GRAY_50}
+            // onPress={onIconPress}
+            glyph={ICON_GLYPH_MAP?.[icon]}
+            buttonStyle={styles.iconButton}
+          />
+        ) : null}
         <NetzerTextInputMask
           mask={mask}
           value={value}
@@ -172,19 +172,19 @@ export const NetzerTextInput: React.FC<NetzerTextInputProps> = ({
           secureTextEntry={secureTextEntry}
           textContentType={textContentType}
           onSubmitEditing={onTextInputSubmitEditing}
-          placeholderTextColor={isFloatingLabel ? 'transparent' : placeholderTextColor}
+          placeholderTextColor={placeholderTextColor}
           {...rest}
         />
-        {icon ? (
+        {/* {false ? (
           <NetzerIconButton
             size={ICON_SIZE}
             testID={iconTestID || ''}
             color={'CONTRAST_40'}
             // onPress={onIconPress}
-            glyph={ICON_GLYPH_MAP[icon]}
+            glyph={ICON_GLYPH_MAP['CART_OUTLINE']}
             buttonStyle={styles.iconButton}
           />
-        ) : null}
+        ) : null} */}
       </View>
       {isUnderlined && <View style={underlineStyle} />}
 
