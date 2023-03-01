@@ -26,7 +26,7 @@ export const NetzerPermissions = () => {
             <NetzerInfo
                 Icon={GoogleMapIcon}
                 title={'Permisos del mapa'}
-                description={'Es necesario el uso del GPS para usar esta aplicación, por favor habilitar los permisos.'}
+                description={'Farmacia Netzer - recoge datos de tu ubicación para ayudar a crear tu dirección de entrega de forma fácil y precisa.'}
             />
             <View style={styles.buttonContainer}>
                 <NetzerPrimaryButton type="PRIMARY_OUTLINE" text={'Habilitar permisos'} onPress={askLocationPermission} />
