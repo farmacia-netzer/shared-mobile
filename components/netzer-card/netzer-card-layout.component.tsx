@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { View } from 'react-native';
 
-import { COLOR_PRIMARY } from '##theme/colors.constant';
+import { COLOR_PRIMARY, LIGHT_CONTAINER } from '##theme/colors.constant';
 import { FONT_SIZE } from '##theme/typography.constant';
 import { StyleSheet } from 'react-native';
 
@@ -55,7 +55,7 @@ export const NetzerCardLayoutStyles = StyleSheet.create({
   },
   boxContainer: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: LIGHT_CONTAINER,
     borderTopEndRadius: 40,
     borderTopStartRadius: 40
   }
