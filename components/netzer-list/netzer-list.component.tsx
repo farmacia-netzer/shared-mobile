@@ -8,6 +8,7 @@ import { usePagination } from '##shared/hooks/usePagination';
 import { FONT_SIZE } from '##theme/typography.constant';
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { Animated, Dimensions, ListRenderItem, RefreshControl, StyleSheet, View } from 'react-native';
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 
 interface ListDataProps {
     title?: string;
@@ -73,7 +74,14 @@ export const NetzerList = ({
 
     return (
         <View>
-            {title && <NetzerText style={styles.title} text={title} />}
+            {
+                isLoading ?
+                    <SkeletonPlaceholder borderRadius={5}>
+                        <SkeletonPlaceholder.Item width={150} height={10} borderRadius={20} marginTop={20} marginLeft={10} />
+                    </SkeletonPlaceholder>
+                    :
+                    title && <NetzerText style={styles.title} text={title} />
+            }
             <Animated.FlatList
                 data={isLoading ? [...Array(10)].map((_, i) => i) : data as any}
                 renderItem={isLoading ? skeletonComponent : renderItem}
