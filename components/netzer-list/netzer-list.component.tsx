@@ -22,6 +22,7 @@ interface ListDataProps {
     PAGE_SIZE?: number
     props?: any
     EmptySection?: ReactNode
+    skeletonComponent?: ReactNode | (() => JSX.Element)
 }
 const defaultParams = {}
 
@@ -39,6 +40,7 @@ export const NetzerList = ({
     parameters = defaultParams,
     horizontal = false,
     props,
+    skeletonComponent,
     EmptySection
 }: ListDataProps) => {
     const dispatch = useDispatch();
@@ -73,8 +75,8 @@ export const NetzerList = ({
         <View>
             {title && <NetzerText style={styles.title} text={title} />}
             <Animated.FlatList
-                data={data as any}
-                renderItem={renderItem}
+                data={isLoading ? [...Array(10)].map((_, i) => i) : data as any}
+                renderItem={isLoading ? skeletonComponent : renderItem}
                 refreshing={isLoading as boolean}
                 refreshControl={<RefreshControl refreshing={isLoading as boolean} />}
                 horizontal={horizontal}
