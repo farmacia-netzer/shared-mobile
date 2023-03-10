@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-native",
+    "lib": ["esnext", "dom"],
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "paths": {
+      "../../*": ["./*"]
+    },
+
+    "module": "commonjs" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
+    "allowJs": true /* Allow javascript files to be compiled. */,
+    "resolveJsonModule": true,
+    "incremental": true /* Enable incremental compilation */,
+    "isolatedModules": true /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */,
+    "strict": true /* Enable all strict type-checking options. */,
+    "noImplicitAny": false /* no error on implied any type */,
+    "baseUrl": "./src/" /* Base directory to resolve non-absolute module names. */,
+    "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
+  },
+  "exclude": ["node_modules", "babel.config.js", "metro.config.js"],
+  "include": ["src/**/**/*", "src/wrapper-theme.tsx"]
+}

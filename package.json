@@ -1,0 +1,51 @@
+{
+  "name": "@netzer/share-mobile",
+  "version": "1.0.0",
+  "description": "shared",
+  "main": "index.tsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farmacia-netzer/shared-mobile.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "shared",
+    "components",
+    "services"
+  ],
+  "author": "Michael Montero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/farmacia-netzer/shared-mobile/issues"
+  },
+  "homepage": "https://github.com/farmacia-netzer/shared-mobile#readme",
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "react-native-reanimated": "^2.13.0",
+    "react-native-gesture-handler": "^2.9.0"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^2.9.10",
+    "axios": "^1.3.4",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "react-hook-form": "^7.42.1",
+    "react-native-device-info": "^10.4.0",
+    "react-native-flash-message": "^0.4.0",
+    "react-native-geolocation-service": "^5.3.1",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
+    "react-native-maps": "^1.4.0",
+    "react-native-maps-directions": "^1.9.0",
+    "react-native-permissions": "^3.7.3",
+    "react-native-skeleton-placeholder": "^5.2.4",
+    "react-native-vector-icons": "^9.2.0",
+    "react-navigation-shared-element": "^3.1.3",
+    "typescript": "^4.9.5",
+    "yup": "^1.0.2"
+  }
+}
