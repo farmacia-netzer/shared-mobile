@@ -77,6 +77,7 @@ export const NetzerFieldInput = ({
             isFloatingLabel={true}
             mask={''}
             maxLength={config?.maxLength}
+            multiline={config.multiline}
         />
     );
 };
