@@ -19,5 +19,12 @@ export const NetzerTextInputMask = (props) => {
     [mask, allowSpaces, onChange]
   );
 
-  return <TextInput {...rest} style={style} value={maskedResult.masked} onChangeText={handleChangeText} />;
+  return <TextInput style={{
+    ...style,
+    ...(props.multiline && { minHeight: 70, paddingTop: 10 })
+  }}
+    {...rest}
+    value={maskedResult.masked}
+    onChangeText={handleChangeText}
+  />;
 };

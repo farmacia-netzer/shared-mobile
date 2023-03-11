@@ -1,9 +1,9 @@
-import React, { ReactElement, useCallback, useMemo } from 'react';
+import React, { ReactElement, ReactNode, useCallback, useMemo } from 'react';
 
 import { shapeYupFormFields } from '##component/netzer-form/wl-field.utils';
 import { NetzerTextInputProps } from '##component/netzer-text-input';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FieldValues, FormProvider, useForm, UseFormReset } from 'react-hook-form';
 import { Keyboard } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { NetzerField } from './netzer-field.component';
@@ -12,7 +12,8 @@ interface NetzerFormProps {
   enableScroll?: boolean;
   fields: IFieldsForm;
   extraScrollHeight?: number
-  onSubmit(form: any): void;
+  onSubmit(form: any, reset: UseFormReset<FieldValues>): void;
+  headerSection?: ReactNode
   footerSection: (onSubmit: Function) => ReactElement;
 }
 export interface IFieldsForm {
@@ -26,7 +27,8 @@ export const NetzerForm: React.FC<NetzerFormProps> = ({
   fields: FieldsWithoutConversion,
   extraScrollHeight = 0,
   footerSection,
-  onSubmit
+  onSubmit,
+  headerSection
 }: NetzerFormProps) => {
   const initialState = {};
 
@@ -44,13 +46,14 @@ export const NetzerForm: React.FC<NetzerFormProps> = ({
   const _onSubmit = useCallback(
     (data) => {
       Keyboard.dismiss();
-      onSubmit(data);
+      onSubmit(data, methods.reset);
     },
-    [onSubmit]
+    [methods.reset, onSubmit]
   );
 
   return (
     <KeyboardAwareScrollView extraScrollHeight={extraScrollHeight} extraHeight={extraScrollHeight + extraScrollHeight} enableOnAndroid>
+      {headerSection}
       <FormProvider {...methods} >
         {fields.map((field: NetzerTextInputProps, index) => (
           <NetzerField

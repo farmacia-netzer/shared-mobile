@@ -6,7 +6,7 @@ import { GRAY_SCALE } from '##theme/grayscale.constant';
 export const DIVIDER_HEIGHT = 1;
 export const DIVIDER_COLOR_SOLID = GRAY_SCALE.GRAY_80;
 
-export const NetzerListItemDivider = ({ dividerStyles, isDashed = false }) => {
+export const NetzerListItemDivider = ({ dividerStyles = {}, isDashed = false }) => {
   const dividerStyle = isDashed
     ? {
         ...styles.dashed,

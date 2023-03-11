@@ -5,15 +5,6 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 export const NetzerField = ({ type, fieldName, fieldConfig, onFieldSubmit, fieldStyle = {}, styleName = '' }) => {
 
-  // console.log(JSON.stringify({
-  //   type,
-  //   fieldName,
-  //   fieldConfig,
-  //   onFieldSubmit,
-  //   fieldStyle,
-  //   styleName
-  // }, null, 2))
-
   const { control, formState } = useFormContext();
   const { errors } = formState;
 
@@ -32,7 +23,7 @@ export const NetzerField = ({ type, fieldName, fieldConfig, onFieldSubmit, field
             <NetzerFieldInput
               name={fieldName}
               fieldErrors={errors}
-              value={value}
+              value={value || fieldConfig?.value}
               config={fieldConfig}
               onFieldUpdate={onChange}
               onFieldBlur={onBlur}
