@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, useContext, useMemo } from 'react';
 import { View } from 'react-native';
 
-import { COLOR_PRIMARY, LIGHT_CONTAINER } from '##theme/colors.constant';
 import { FONT_SIZE } from '##theme/typography.constant';
 import { StyleSheet } from 'react-native';
+import { ThemeContext } from "##ui/context/theme-context";
 
 interface NetzerCardLayoutProps {
   children: Array<React.ReactElement> | React.ReactElement;
@@ -11,11 +11,15 @@ interface NetzerCardLayoutProps {
 }
 
 export const NetzerCardLayout: FC<NetzerCardLayoutProps> = ({ children, withoutBoxPadding = false }) => {
+  const { theme } = useContext(ThemeContext);
+
+  const style = useMemo(() => NetzerCardLayoutStyles(theme), [theme]);
+
   return (
-    <View style={NetzerCardLayoutStyles.container}>
+    <View style={style.container}>
       <View
         style={{
-          ...NetzerCardLayoutStyles.boxContainer,
+          ...style.boxContainer,
           ...(withoutBoxPadding ? { paddingHorizontal: 0 } : { paddingHorizontal: '4%' })
         }}
       >
@@ -25,10 +29,10 @@ export const NetzerCardLayout: FC<NetzerCardLayoutProps> = ({ children, withoutB
   );
 };
 
-export const NetzerCardLayoutStyles = StyleSheet.create({
+export const NetzerCardLayoutStyles = (theme) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLOR_PRIMARY,
+    backgroundColor:  theme.colors.background,
     paddingTop: '3%'
   },
   backIcon: {
@@ -55,7 +59,7 @@ export const NetzerCardLayoutStyles = StyleSheet.create({
   },
   boxContainer: {
     flex: 1,
-    backgroundColor: LIGHT_CONTAINER,
+    backgroundColor: theme.colors.background,
     borderTopEndRadius: 40,
     borderTopStartRadius: 40
   }
