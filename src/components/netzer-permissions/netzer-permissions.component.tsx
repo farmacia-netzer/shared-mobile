@@ -1,16 +1,14 @@
-import GoogleMapIcon from '../../assets/svg/google-maps.svg';
+import GoogleMapIcon from '../../assets/google-maps.svg';
 import { PermissionsContext } from '../../context/PermissionsContext';
-import { FONT_SIZE } from '##theme/typography.constant';
+import { FONT_SIZE } from '../../theme/typography.constant';
 import React, { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { NetzerInfo } from '../netzer-info';
 import { NetzerPrimaryButton } from '../netzer-primary-button/netzer-primary-button.component';
 import { NetzerText } from '../netzer-text';
 
-export const NetzerPermissions = () => {
+export const NetzerPermissions = ({ goBack }) => {
     const { askLocationPermission, permission } = useContext(PermissionsContext);
-    const { goBack } = useNetzerNavigation();
-
 
     if (permission?.locationStatus === 'unavailable') {
         return (

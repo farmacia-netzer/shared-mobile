@@ -1,13 +1,14 @@
-import EmptyBox from '##assets/svg/EmptyBox.svg';
+import EmptyBox from '../../assets/EmptyBox.svg';
 import { usePagination } from '../../hooks/usePagination';
 import { FONT_SIZE } from '../../theme/typography.constant';
 
-import React, { ReactNode, useCallback, useEffect, useState, useDispatch, useSelector } from 'react';
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { Animated, Dimensions, ListRenderItem, RefreshControl, StyleSheet, View } from 'react-native';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import { NetzerListEmpty } from '../netzer-list-empty/netzer-list-empty.component';
 import { NetzerLoading } from '../netzer-loading/netzert-loading.component';
 import { NetzerText } from '../netzer-text';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface ListDataProps {
     title?: string;

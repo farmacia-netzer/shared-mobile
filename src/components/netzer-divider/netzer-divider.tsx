@@ -1,6 +1,7 @@
 import { GRAY_SCALE } from '../../theme/grayscale.constant';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { BASE_MARGIN } from '../../theme/dimensions.constant';
 
 export const DIVIDER_HEIGHT = 1;
 export const DIVIDER_COLOR_SOLID = GRAY_SCALE.GRAY_80;
@@ -8,13 +9,13 @@ export const DIVIDER_COLOR_SOLID = GRAY_SCALE.GRAY_80;
 export const NetzerListItemDivider = ({ dividerStyles, isDashed = false }) => {
   const dividerStyle = isDashed
     ? {
-        ...styles.dashed,
-        ...dividerStyles
-      }
+      ...styles.dashed,
+      ...dividerStyles
+    }
     : {
-        ...styles.divider,
-        ...dividerStyles
-      };
+      ...styles.divider,
+      ...dividerStyles
+    };
   if (isDashed) {
     return (
       <View style={styles.dashedContainer}>
