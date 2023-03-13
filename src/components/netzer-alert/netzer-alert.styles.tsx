@@ -1,6 +1,7 @@
-import { COLOR_PRIMARY_LIGHT, COLOR_PRIMARY, COLOR_SECONDARY, COLOR_SECONDARY_LIGHT, COLOR_DANGER, COLOR_DANGER_LIGHT } from "../../colors.constant";
+
 import { FONT_SIZE } from "../../theme/typography.constant";
 import { StyleProp, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { COLOR_PRIMARY, COLOR_PRIMARY_LIGHT, COLOR_SECONDARY, COLOR_SECONDARY_LIGHT, COLOR_DANGER, COLOR_DANGER_LIGHT } from "../../theme/colors.constant";
 
 const container: StyleProp<ViewStyle> = {
     borderRadius: 20,

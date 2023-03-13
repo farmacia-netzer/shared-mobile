@@ -1,10 +1,9 @@
 
-import { COLOR_PRIMARY } from '../../theme/colors.constant';
-import { FONT_SIZE } from '../../theme/typography.constant';
 import React, { ReactNode, useCallback, useEffect, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useDispatch } from 'react-redux';
+import { COLOR_PRIMARY } from '../../theme/colors.constant';
+import { FONT_SIZE } from '../../theme/typography.constant';
 import { ICON_GLYPH_MAP } from '../netzer-icon/netzer-icon.constant';
 import { NetzerPrimaryButton } from '../netzer-primary-button/netzer-primary-button.component';
 import { NetzerText } from '../netzer-text';
@@ -17,12 +16,12 @@ interface NetzerModalProps {
   withoutBoxPadding?: boolean;
   withSafeAreaBottom?: boolean;
   position?: number
+  navigationActions: Function
 }
 
-export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = false, position = 1, withSafeAreaBottom = true }: NetzerModalProps) => {
-  const { goBack, navigation } = useNetzerNavigation()
+export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = false, position = 1, withSafeAreaBottom = true, navigationActions }: NetzerModalProps) => {
+  const { goBack, navigation } = navigationActions()
   const { bottom } = useSafeAreaInsets()
-  const dispatch = useDispatch()
 
   const onCloseModal = useCallback(() => {
     onClose ? onClose() : goBack()
@@ -50,13 +49,6 @@ export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = fals
     })
 
   }, [closeButton, navigation, onCloseModal, title, titleSection]);
-
-  useEffect(() => {
-    dispatch(actions.setAppState({ hideTabBar: true }))
-    return () => {
-      if (position === 1) { dispatch(actions.setAppState({ hideTabBar: false })) }
-    }
-  }, [dispatch, position]);
 
 
   const containerStyles = useMemo(() => ({

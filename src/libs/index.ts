@@ -1,0 +1,1 @@
+export { createSharedElementStackNavigator } from 'react-navigation-shared-element';

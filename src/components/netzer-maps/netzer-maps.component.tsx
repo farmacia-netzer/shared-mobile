@@ -3,13 +3,12 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
-import { appConfig } from '##config/app.config';
 import { useLocation } from '../../hooks/useLocation';
+import { COLOR_PRIMARY } from '../../theme/colors.constant';
 import { NetzerCardLayout } from '../netzer-card/netzer-card-layout.component';
 import { NetzerLoading } from '../netzer-loading/netzert-loading.component';
-import { NetzerFabButton } from '../netzer-primary-button/fab/netzer-fab-button.component';
 
-export const NetzerMap = ({ route }) => {
+export const NetzerMap = ({ route, appConfig }) => {
     const mapRef = useRef<MapView>();
     const { getCurrentLocation, stopwatchPosition, watchPosition, currentLocation, hasLocation } = useLocation();
     const following = useRef<boolean>(true);

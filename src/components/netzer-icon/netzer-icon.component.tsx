@@ -9,7 +9,7 @@ import Foundation from 'react-native-vector-icons/Foundation';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { DEFAULT_ICON_SIZE, GLYPH } from './netzer-icon.constant';
 import { GRAY_SCALE } from '../../theme/grayscale.constant';
-// import netzerConfig from '../../assets/netzer-icons.json';
+import netzerConfig from '../../assets/netzer-icons.json';
 
 interface NetzerIconProps {
   glyph: GLYPH;
@@ -29,38 +29,36 @@ export const NetzerIcon: React.FC<NetzerIconProps> = ({
   isAnimated,
   ...props
 }: NetzerIconProps) => {
+  const NetzerIconConfig = createIconSetFromFontello(netzerConfig);
 
-  return null
-  // const NetzerIconConfig = createIconSetFromFontello(netzerConfig);
+  const componentMap = {
+    ionicons: Ionicons,
+    feather: Feather,
+    foundation: Foundation,
+    fontawesome: FontAwesome,
+    netzer: NetzerIconConfig
+  };
 
-  // const componentMap = {
-  //   ionicons: Ionicons,
-  //   feather: Feather,
-  //   foundation: Foundation,
-  //   fontawesome: FontAwesome,
-  //   netzer: NetzerIconConfig
-  // };
+  const Icon = componentMap[glyph.family];
+  const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
-  // const Icon = componentMap[glyph.family];
-  // const AnimatedIcon = Animated.createAnimatedComponent(Icon);
+  const iconProps = {
+    size,
+    color,
+    style,
+    testID: testID || 'NETZER-ICON-' + (glyph.name || 'home-outline').toUpperCase(),
+    name: glyph.name || 'home-outline'
+  };
 
-  // const iconProps = {
-  //   size,
-  //   color,
-  //   style,
-  //   testID: testID || 'NETZER-ICON-' + (glyph.name || 'home-outline').toUpperCase(),
-  //   name: glyph.name || 'home-outline'
-  // };
-
-  // return (
-  //   <Fragment>
-  //     {isAnimated ? (
-  //       <AnimatedIcon {...iconProps} {...props} />
-  //     ) : (
-  //       <Text {...props}>
-  //         <Icon {...iconProps} />
-  //       </Text>
-  //     )}
-  //   </Fragment>
-  // );
+  return (
+    <Fragment>
+      {isAnimated ? (
+        <AnimatedIcon {...iconProps} {...props} />
+      ) : (
+        <Text {...props}>
+          <Icon {...iconProps} />
+        </Text>
+      )}
+    </Fragment>
+  );
 };

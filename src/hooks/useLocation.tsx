@@ -1,4 +1,4 @@
-import { PermissionsContext } from '../../context/PermissionsContext';
+import { PermissionsContext } from '../context';
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import Geolocation from 'react-native-geolocation-service';
 

@@ -1,7 +1,7 @@
-import RadioCheck from '../../assets/svg/radio-check.svg';
-import RadioUnCheck from '../../assets/svg/radio-uncheck.svg';
+import RadioCheck from '../../assets/radio-check.svg';
+import RadioUnCheck from '../../assets/radio-uncheck.svg';
 
-import { NORMAL_MARGIN, SMALL_MARGIN, XX_LARGE_SPACING } from "##theme/dimensions.constant";
+import { NORMAL_MARGIN, SMALL_MARGIN, XX_LARGE_SPACING } from "../../theme/dimensions.constant";
 import React, { ReactNode, useCallback, useMemo } from "react";
 import { Pressable, StyleProp, StyleSheet, ViewStyle } from "react-native";
 
