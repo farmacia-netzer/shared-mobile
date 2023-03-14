@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useMemo } from 'react';
+import React, { ReactNode, useCallback, useContext, useMemo } from 'react';
 import {
   ActivityIndicator,
   Keyboard, StyleProp, Text, TouchableOpacity,
@@ -8,11 +8,11 @@ import {
 import { TouchableOpacity as RNTouchableOpacity } from 'react-native-gesture-handler';
 import { GLYPH } from '../netzer-icon/netzer-icon.constant';
 
-import { NetzerIcon } from '../netzer-icon/netzer-icon.component';
-import { styles } from './netzer-button.styles';
-import { COLOR_PRIMARY } from '../../theme/colors.constant';
-import { MEDIUM_PADDING, SMALL_SPACING, X_MEDIUM_BORDER_RADIUS, X_LARGE_BORDER_RADIUS } from '../../theme/dimensions.constant';
+import { ThemeContext } from '../../context/theme/theme-context';
+import { MEDIUM_PADDING, SMALL_SPACING, X_LARGE_BORDER_RADIUS, X_MEDIUM_BORDER_RADIUS } from '../../theme/dimensions.constant';
 import { GRAY_SCALE } from '../../theme/grayscale.constant';
+import { NetzerIcon } from '../netzer-icon/netzer-icon.component';
+import { stylesComponent } from './netzer-button.styles';
 
 enum EButtonTypes {
   PRIMARY = 'PRIMARY',
@@ -101,6 +101,9 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
   ...props
 }: NetzerPrimaryButtonProps) => {
 
+  const { theme } = useContext(ThemeContext);
+  const styles = useMemo(() => stylesComponent(theme), [theme])
+
   const onClick = useCallback(() => {
     Keyboard.dismiss();
     onPress();
@@ -112,6 +115,9 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
       [EButtonSizes.SMALL]: { button: SMALL_SPACING, icon: { size: 20 } }
     }?.[size]);
   }, [size])
+
+
+
 
 
   const getButtonType = useCallback(() => {
@@ -134,12 +140,12 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
   const getButtonColor = () => ({
     [EButtonTypes.PRIMARY]: '#fff',
     [EButtonTypes.SECONDARY]: 'white',
-    [EButtonTypes.PRIMARY_LIGHT]: COLOR_PRIMARY,
-    [EButtonTypes.PRIMARY_OUTLINE]: COLOR_PRIMARY,
-    [EButtonTypes.PRIMARY_LIGHT_OUTLINE]: COLOR_PRIMARY,
+    [EButtonTypes.PRIMARY_LIGHT]: theme.colors.primary,
+    [EButtonTypes.PRIMARY_OUTLINE]: theme.colors.primary,
+    [EButtonTypes.PRIMARY_LIGHT_OUTLINE]: theme.colors.primary,
     [EButtonTypes.DANGER_TRANSPARENT]: 'red',
-    [EButtonTypes.TRANSPARENT]: COLOR_PRIMARY,
-    [EButtonTypes.WHITE_BLUR]: COLOR_PRIMARY,
+    [EButtonTypes.TRANSPARENT]: theme.colors.primary,
+    [EButtonTypes.WHITE_BLUR]: theme.colors.primary,
     [EButtonTypes.WHITE_LIGHT_BLUR]: 'white',
     [EButtonTypes.GRAY_TRANSPARENT]: GRAY_SCALE.GRAY_70
   }?.[type])

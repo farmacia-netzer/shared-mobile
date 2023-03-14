@@ -1,7 +1,8 @@
 
-import { FONT_SIZE } from "../../theme/typography.constant";
 import { StyleProp, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { COLOR_PRIMARY, COLOR_PRIMARY_LIGHT, COLOR_SECONDARY, COLOR_SECONDARY_LIGHT, COLOR_DANGER, COLOR_DANGER_LIGHT } from "../../theme/colors.constant";
+import { ThemeI } from "../../context/theme/theme-context";
+import { COLOR_DANGER, COLOR_DANGER_LIGHT, COLOR_PRIMARY_LIGHT, COLOR_SECONDARY_LIGHT } from "../../theme/colors.constant";
+import { FONT_SIZE } from "../../theme/typography.constant";
 
 const container: StyleProp<ViewStyle> = {
     borderRadius: 20,
@@ -25,32 +26,32 @@ const description: StyleProp<TextStyle> = {
     fontSize: FONT_SIZE.NORMAL
 }
 
-export const styles = StyleSheet.create({
+export const stylesComponent = (theme: ThemeI) => StyleSheet.create({
     primaryContainer: {
         ...container,
-        borderColor: COLOR_PRIMARY,
+        borderColor: theme.colors.primary,
         backgroundColor: COLOR_PRIMARY_LIGHT
     },
     primaryTitle: {
         ...title,
-        color: COLOR_PRIMARY
+        color: theme.colors.primary
     },
     primaryDescription: {
         ...description,
-        color: COLOR_PRIMARY
+        color: theme.colors.primary
     },
     secondaryContainer: {
         ...container,
-        borderColor: COLOR_SECONDARY,
+        borderColor: theme.colors.primary,
         backgroundColor: COLOR_SECONDARY_LIGHT
     },
     secondaryTitle: {
         ...title,
-        color: COLOR_SECONDARY
+        color: theme.colors.primary
     },
     secondaryDescription: {
         ...description,
-        color: COLOR_SECONDARY
+        color: theme.colors.primary
     },
     dangerContainer: {
         ...container,

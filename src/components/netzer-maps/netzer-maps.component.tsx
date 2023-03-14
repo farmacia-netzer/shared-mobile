@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { useLocation } from '../../hooks/useLocation';
+import { isIos } from '../../services';
 import { COLOR_PRIMARY } from '../../theme/colors.constant';
 import { NetzerCardLayout } from '../netzer-card/netzer-card-layout.component';
 import { NetzerLoading } from '../netzer-loading/netzert-loading.component';

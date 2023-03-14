@@ -1,9 +1,9 @@
 
-import { COLOR_PRIMARY, COLOR_SECONDARY } from "../../theme/colors.constant";
-import { FONT_SIZE } from "../../theme/typography.constant";
 import { StyleSheet } from "react-native";
+import { ThemeI } from "../../context/theme/theme-context";
+import { FONT_SIZE } from "../../theme/typography.constant";
 
-export const styles = StyleSheet.create({
+export const stylesComponent = (theme: ThemeI) => StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -15,22 +15,22 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     primary: {
-        backgroundColor: COLOR_PRIMARY
+        backgroundColor: theme.colors.primary
     },
     primaryLight: {
         backgroundColor: "#b4e1ff"
     },
     primaryLightOutline: {
         backgroundColor: "#F1F7FB",
-        borderColor: COLOR_PRIMARY,
+        borderColor: theme.colors.primary,
         borderWidth: 1
     },
     primaryOutline: {
-        borderColor: COLOR_PRIMARY,
+        borderColor: theme.colors.primary,
         borderWidth: 1
     },
     secondary: {
-        backgroundColor: COLOR_SECONDARY
+        backgroundColor: theme.secondary
     },
     PrimaryTransparent: {
         backgroundColor: "transparent"

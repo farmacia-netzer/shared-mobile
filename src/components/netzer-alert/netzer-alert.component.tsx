@@ -1,8 +1,9 @@
 
-import React, { useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { View } from 'react-native'
+import { ThemeContext } from '../../context/theme/theme-context'
 import { NetzerText } from '../netzer-text'
-import { styles } from './netzer-alert.styles'
+import { stylesComponent } from './netzer-alert.styles'
 
 interface NetzerAlertProps {
     title?: string
@@ -22,6 +23,8 @@ enum EAlertBorder {
 
 
 export const NetzerAlert = ({ title, description, type = "PRIMARY", borderType = "SOLID" }: NetzerAlertProps) => {
+    const { theme } = useContext(ThemeContext);
+    const styles = useMemo(() => stylesComponent(theme), [theme, stylesComponent])
 
     const border = useMemo(() => {
         return {
