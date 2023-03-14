@@ -1,8 +1,8 @@
 
-import React, { ReactNode, useCallback, useEffect, useMemo } from 'react';
+import React, { ReactNode, useCallback, useContext, useEffect, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { COLOR_PRIMARY } from '../../theme/colors.constant';
+import { ThemeContext } from '../../context/theme/theme-context';
 import { FONT_SIZE } from '../../theme/typography.constant';
 import { ICON_GLYPH_MAP } from '../netzer-icon/netzer-icon.constant';
 import { NetzerPrimaryButton } from '../netzer-primary-button/netzer-primary-button.component';
@@ -22,6 +22,7 @@ interface NetzerModalProps {
 export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = false, position = 1, withSafeAreaBottom = true, navigationActions }: NetzerModalProps) => {
   const { goBack, navigation } = navigationActions()
   const { bottom } = useSafeAreaInsets()
+  const { theme } = useContext(ThemeContext);
 
   const onCloseModal = useCallback(() => {
     onClose ? onClose() : goBack()
@@ -44,7 +45,7 @@ export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = fals
       headerStyle: {
         height: 100,
         shadowOpacity: 0,
-        backgroundColor: COLOR_PRIMARY
+        backgroundColor: theme.colors.primary
       }
     })
 
@@ -53,12 +54,13 @@ export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = fals
 
   const containerStyles = useMemo(() => ({
     ...styles.boxContainer,
+    backgroundColor: theme.colors.background,
     paddingBottom: withSafeAreaBottom ? bottom : 0,
     ...(withoutBoxPadding ? { paddingHorizontal: 0 } : { paddingHorizontal: '4%' })
   }), [bottom, withSafeAreaBottom, withoutBoxPadding])
 
   return (
-    <View style={{ ...styles.container }}>
+    <View style={{ ...styles.container, backgroundColor: theme.colors.primary }}>
       <View style={containerStyles}>
         {children}
       </View>
@@ -70,7 +72,7 @@ export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = fals
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLOR_PRIMARY
+
   },
   title: {
     fontFamily: 'Avenir Next',
@@ -85,7 +87,6 @@ const styles = StyleSheet.create({
   },
   boxContainer: {
     flex: 1,
-    backgroundColor: 'white',
     borderTopEndRadius: 30,
     borderTopStartRadius: 30,
     shadowColor: '#0064a6',

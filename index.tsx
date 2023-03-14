@@ -9,14 +9,23 @@ import {
     getUuid,
     getDeviceFontSize,
 } from './src/services'
-import { createSharedElementStackNavigator } from './src/libs'
+import {
+    createSharedElementStackNavigator,
+    Marker,
+    PROVIDER_GOOGLE,
+    MapPressEvent,
+    MarkerDragStartEndEvent,
+    MapView
+
+} from './src/libs'
 import FlashMessage from 'react-native-flash-message';
 import { NativeModules } from 'react-native';
 
 import {
     permissionInitState,
     PermissionsContext,
-    PermissionsProvider
+    PermissionsProvider,
+    NetzerThemeProvider
 } from './src/context';
 
 import {
@@ -36,6 +45,7 @@ import {
     useLocation,
     usePagination,
     useAnimation,
+    LocationPosition
 } from './src/hooks'
 
 import {
@@ -110,6 +120,7 @@ export {
     permissionInitState,
     PermissionsContext,
     PermissionsProvider,
+    NetzerThemeProvider,
 
     // components
     ICON_GLYPH_MAP,
@@ -147,6 +158,11 @@ export {
 
     // libs 
     createSharedElementStackNavigator,
+    Marker,
+    PROVIDER_GOOGLE,
+    MapPressEvent,
+    MarkerDragStartEndEvent,
+    MapView,
 
     // interfaces
     IFieldsForm

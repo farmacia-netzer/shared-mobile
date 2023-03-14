@@ -1,9 +1,10 @@
 
-import React, { ReactNode, useCallback, useMemo } from 'react';
+import React, { ReactNode, useCallback, useContext, useMemo } from 'react';
 import { StyleProp, StyleSheet, Text, TextProps, TextStyle } from 'react-native';
 import { brandStyles, coreStyles, customStyles } from './netzer-text.style';
 import { SharedElement } from 'react-navigation-shared-element';
 import { FONT_SIZE } from '../../theme/typography.constant';
+import { ThemeContext, ThemeI } from '../../context/theme/theme-context';
 
 type TBrandStyles = typeof brandStyles;
 type TCoreStyles = typeof coreStyles;
@@ -18,6 +19,7 @@ interface NetzerTextProps extends TextProps {
   fontStyle?: any;
   type?: TTitleSizes;
   sharedElement?: boolean;
+  style?: TextStyle
   sharedElementId?: string;
 }
 
@@ -38,6 +40,9 @@ export const NetzerText: React.FC<NetzerTextProps> = ({
   sharedElementId,
   ...rest
 }: NetzerTextProps) => {
+  const { theme } = useContext(ThemeContext);
+  const styles = useMemo(() => stylesComponent(theme), [theme])
+
   const { style, ...otherTextProps } = rest;
 
   const textStyle: TextStyle =
@@ -83,9 +88,10 @@ export const NetzerText: React.FC<NetzerTextProps> = ({
 const textStyles = {
   fontFamily: 'Avenir Next'
 }
-const styles = StyleSheet.create({
+const stylesComponent = (theme: ThemeI) => StyleSheet.create({
   title: {
     ...textStyles,
+    color: theme.colors.text,
     fontSize: FONT_SIZE.LARGE,
     fontWeight: 'bold',
     fontFamily: 'Avenir Next',

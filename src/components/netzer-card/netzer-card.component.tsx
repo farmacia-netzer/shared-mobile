@@ -1,7 +1,7 @@
-import { BASE_PADDING, X_MEDIUM_BORDER_RADIUS, X_LARGE_BORDER_RADIUS, BASE_MARGIN } from '../../theme/dimensions.constant';
-import { GRAY_SCALE } from '../../theme/grayscale.constant';
-import React, { ReactElement, useMemo } from 'react';
+import React, { ReactElement, useContext, useMemo } from 'react';
 import { LayoutChangeEvent, StyleSheet, View } from 'react-native';
+import { ThemeContext, ThemeI } from '../../context/theme/theme-context';
+import { BASE_MARGIN, BASE_PADDING, X_LARGE_BORDER_RADIUS, X_MEDIUM_BORDER_RADIUS } from '../../theme/dimensions.constant';
 
 interface NetzerCardProps {
   children: ReactElement;
@@ -13,6 +13,7 @@ interface NetzerCardProps {
 
 
 export const NetzerCard = ({ children, padding = BASE_PADDING, typeRadius = 'medium', height, onLayout }: NetzerCardProps) => {
+  const { theme } = useContext(ThemeContext);
   const cardStyles = useMemo(
     () =>
     ({
@@ -22,6 +23,8 @@ export const NetzerCard = ({ children, padding = BASE_PADDING, typeRadius = 'med
     }?.[typeRadius]),
     [typeRadius]
   );
+
+  const styles = useMemo(() => stylesComponent(theme), [theme])
 
   const containerStyles = useMemo(
     () => [
@@ -34,10 +37,10 @@ export const NetzerCard = ({ children, padding = BASE_PADDING, typeRadius = 'med
   return <View onLayout={onLayout} style={containerStyles}>{children}</View>;
 };
 
-const styles = StyleSheet.create({
+const stylesComponent = (theme: ThemeI) => StyleSheet.create({
   container: {
     marginTop: BASE_MARGIN,
-    backgroundColor: GRAY_SCALE.WHITE,
+    backgroundColor: theme.colors.card,
     shadowColor: '#000',
     marginHorizontal: 2,
     shadowOffset: {

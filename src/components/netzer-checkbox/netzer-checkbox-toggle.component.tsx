@@ -1,8 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { Pressable } from 'react-native';
-import { DEFAULT_ICON_CHECKED_COLOR, DEFAULT_ICON_UNCHECKED_COLOR, styles } from './netzer-checkbox-toggle.style';
+import { ThemeContext } from '../../context/theme/theme-context';
 import { NetzerIcon } from '../netzer-icon/netzer-icon.component';
 import { ICON_GLYPH_MAP } from '../netzer-icon/netzer-icon.constant';
+import { DEFAULT_ICON_UNCHECKED_COLOR, styles } from './netzer-checkbox-toggle.style';
 
 export const NetzerCheckboxToggle = ({
   value = false,
@@ -12,6 +13,8 @@ export const NetzerCheckboxToggle = ({
   iconSize = 22,
   ...rest
 }) => {
+  const { theme } = useContext(ThemeContext);
+
   const [isChecked, setIsChecked] = useState(value);
   const onPress = useCallback(() => {
     const nowChecked = relyExternalState ? !value : !isChecked;
@@ -40,7 +43,7 @@ export const NetzerCheckboxToggle = ({
       ) : (
         <NetzerIcon
           glyph={ICON_GLYPH_MAP.CHECKBOX_CHECKED_OUTLINE}
-          color={DEFAULT_ICON_CHECKED_COLOR}
+          color={theme.colors.primary}
           size={iconSize}
         />
       )}
