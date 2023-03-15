@@ -57,11 +57,11 @@ export const NetzerText: React.FC<NetzerTextProps> = ({
 
   const getTitleSize = useCallback(() => {
     return {
-      [ETitleSizes.TITLE]: styles.title,
-      [ETitleSizes.SUBTITLE]: styles.subtitle,
-      [ETitleSizes.TEXT]: styles.text
+      [ETitleSizes.TITLE]: { ...styles.title, ...style },
+      [ETitleSizes.SUBTITLE]: { ...styles.subtitle, ...style },
+      [ETitleSizes.TEXT]: { ...styles.text, ...style },
     }?.[type];
-  }, [type]);
+  }, [type, styles, style]);
 
   const styleProps: StyleProp<TextStyle> = useMemo(
     () => [textStyle, undefined, style, getTitleSize()],
@@ -99,9 +99,11 @@ const stylesComponent = (theme: ThemeI) => StyleSheet.create({
   },
   subtitle: {
     ...textStyles,
+    color: theme.colors.text,
     fontSize: FONT_SIZE.NORMAL
   },
   text: {
-    ...textStyles
+    ...textStyles,
+    color: theme.colors.text,
   }
 });

@@ -42,16 +42,16 @@ export const stylesComponent = (theme: ThemeI) => StyleSheet.create({
     },
     secondaryContainer: {
         ...container,
-        borderColor: theme.colors.primary,
+        borderColor: theme.secondary,
         backgroundColor: COLOR_SECONDARY_LIGHT
     },
     secondaryTitle: {
         ...title,
-        color: theme.colors.primary
+        color: theme.secondary
     },
     secondaryDescription: {
         ...description,
-        color: theme.colors.primary
+        color: theme.secondary
     },
     dangerContainer: {
         ...container,

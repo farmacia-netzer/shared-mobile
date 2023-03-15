@@ -14,6 +14,8 @@ interface NetzerCardProps {
 
 export const NetzerCard = ({ children, padding = BASE_PADDING, typeRadius = 'medium', height, onLayout }: NetzerCardProps) => {
   const { theme } = useContext(ThemeContext);
+  const styles = useMemo(() => stylesComponent(theme), [theme])
+
   const cardStyles = useMemo(
     () =>
     ({
@@ -24,14 +26,12 @@ export const NetzerCard = ({ children, padding = BASE_PADDING, typeRadius = 'med
     [typeRadius]
   );
 
-  const styles = useMemo(() => stylesComponent(theme), [theme])
-
   const containerStyles = useMemo(
     () => [
       styles.container,
       { padding, borderRadius: cardStyles.radius, shadowOpacity: cardStyles.shadowOpacity, height }
     ],
-    [cardStyles.radius, cardStyles.shadowOpacity, height, padding]
+    [cardStyles.radius, cardStyles.shadowOpacity, height, padding, styles]
   );
 
   return <View onLayout={onLayout} style={containerStyles}>{children}</View>;

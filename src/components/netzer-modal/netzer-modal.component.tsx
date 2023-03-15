@@ -33,7 +33,7 @@ export const NetzerModal = ({ title, children, onClose, withoutBoxPadding = fals
   }, [title])
 
   const closeButton = useCallback(() => {
-    return <NetzerPrimaryButton onPress={onCloseModal} glyph={ICON_GLYPH_MAP.CLOSE_OUTLINE} type="WHITE_LIGHT_BLUR" size='SMALL' style={styles.closeButton} />
+    return <NetzerPrimaryButton onPress={onCloseModal} glyph={ICON_GLYPH_MAP.CLOSE_OUTLINE} type="PRIMARY_LIGHT" size='SMALL' style={styles.closeButton} />
   }, [onCloseModal])
 
   useEffect(() => {

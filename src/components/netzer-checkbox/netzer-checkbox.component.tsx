@@ -3,9 +3,10 @@ import { THEME_COLORS } from '../../theme/colors.constant';
 import { NORMAL_MARGIN } from '../../theme/dimensions.constant';
 import { GRAY_SCALE } from '../../theme/grayscale.constant';
 import { FONT_SIZE } from '../../theme/typography.constant';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useContext, useMemo, useState } from 'react';
 import { StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { NetzerCheckboxToggle } from './netzer-checkbox-toggle.component';
+import { ThemeContext, ThemeI } from '../../context/theme/theme-context';
 
 interface NetzerCheckbox {
   style?: StyleProp<ViewStyle>;
@@ -28,8 +29,10 @@ export const NetzerCheckbox: React.FC<NetzerCheckbox> = ({
   label,
   labelContainerStyle
 }: NetzerCheckbox) => {
-  const [isChecked, setIsChecked] = useState(value);
+  const { theme } = useContext(ThemeContext);
+  const styles = useMemo(() => stylesComponent(theme), [theme])
 
+  const [isChecked, setIsChecked] = useState(value);
   const onPress = useCallback(() => {
     const nowChecked = relyExternalState ? !value : !isChecked;
     setIsChecked(nowChecked);
@@ -56,7 +59,7 @@ export const NetzerCheckbox: React.FC<NetzerCheckbox> = ({
   );
 };
 
-const styles = StyleSheet.create({
+const stylesComponent = (theme: ThemeI) => StyleSheet.create({
   container: {
     display: 'flex',
     marginVertical: NORMAL_MARGIN,
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
   },
 
   checkboxLabel: {
-    color: GRAY_SCALE.BLACK,
+    color: theme.colors.text,
     marginHorizontal: NORMAL_MARGIN,
     fontSize: FONT_SIZE.NORMAL
   }

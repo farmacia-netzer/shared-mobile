@@ -1,6 +1,7 @@
 import { isIos, isAndroid } from "../../services/device/platform";
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { NetzerTextInput } from "./netzer-text-input.component";
+import { ThemeContext } from "../../context/theme/theme-context";
 
 export const NetzerFieldInput = ({
     name,
@@ -13,7 +14,7 @@ export const NetzerFieldInput = ({
     styleName,
     fieldErrors
 }) => {
-
+    const { theme } = useContext(ThemeContext);
     const [iconFocus, setIconFocus] = React.useState(false);
     const [icon, setIcon] = React.useState(config?.iconFocus ?? undefined);
     const [iconAccessibilityLabel, setIconAccessibilityLabel] = React.useState(
@@ -60,6 +61,7 @@ export const NetzerFieldInput = ({
             secureTextEntry={secureTextEntry}
             patternType={config?.pattern}
             placeholder={config?.placeholder}
+            placeholderTextColor={theme.colors.text}
             icon={config.icon}
             onIconPress={onIconPress}
             iconAccessibilityLabel={iconAccessibilityLabel}

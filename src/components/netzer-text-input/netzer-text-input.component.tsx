@@ -189,7 +189,7 @@ export const NetzerTextInput: React.FC<NetzerTextInputProps> = ({
       </View>
       {isUnderlined && <View style={underlineStyle} />}
 
-      {!isValid && message && !showRequirements ? <NetzerText text={message} styleName={'INPUT_ERROR'} /> : null}
+      {!isValid && message && !showRequirements ? <NetzerText text={message} styleName={'INPUT_ERROR'} style={{ color: "red" }} /> : null}
     </View>
   );
 };

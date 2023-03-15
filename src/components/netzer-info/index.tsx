@@ -1,5 +1,6 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, useContext, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { ThemeContext, ThemeI } from '../../context/theme/theme-context';
 import { NetzerText } from '../netzer-text';
 
 interface NetzerInfo {
@@ -9,6 +10,9 @@ interface NetzerInfo {
 }
 
 export const NetzerInfo: FC<NetzerInfo> = ({ Icon, title, description }) => {
+  const { theme } = useContext(ThemeContext);
+  const styles = useMemo(() => stylesComponent(theme), [theme])
+
   return (
     <View style={styles.boxHeaderSection}>
       <Icon style={styles.image} width={110} height={110} />
@@ -21,7 +25,7 @@ export const NetzerInfo: FC<NetzerInfo> = ({ Icon, title, description }) => {
     </View>
   );
 };
-const styles = StyleSheet.create({
+const stylesComponent = (theme: ThemeI) => StyleSheet.create({
   boxHeaderSection: {
     width: '100%',
     justifyContent: 'center',
@@ -32,7 +36,8 @@ const styles = StyleSheet.create({
     marginTop: 60
   },
   title: {
-    paddingTop: 25
+    paddingTop: 25,
+    color: theme.colors.text
   },
   description: {
     textAlign: 'center',

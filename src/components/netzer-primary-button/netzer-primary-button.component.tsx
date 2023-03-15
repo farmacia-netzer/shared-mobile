@@ -116,10 +116,6 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
     }?.[size]);
   }, [size])
 
-
-
-
-
   const getButtonType = useCallback(() => {
     return ({
       [EButtonTypes.PRIMARY]: { background: [styles.primary] },
@@ -134,7 +130,7 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
       [EButtonTypes.GRAY_OUTLINE]: { background: [styles.grayOutLine] },
       [EButtonTypes.GRAY_TRANSPARENT]: { background: [styles.PrimaryTransparent] }
     }?.[type]);
-  }, [type])
+  }, [type, styles])
 
 
   const getButtonColor = () => ({
