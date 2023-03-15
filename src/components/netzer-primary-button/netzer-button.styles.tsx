@@ -1,6 +1,7 @@
 
 import { StyleSheet } from "react-native";
 import { ThemeI } from "../../context/theme/theme-context";
+import { COLOR_PRIMARY_LIGHT } from "../../theme/colors.constant";
 import { FONT_SIZE } from "../../theme/typography.constant";
 
 export const stylesComponent = (theme: ThemeI) => StyleSheet.create({
@@ -18,10 +19,10 @@ export const stylesComponent = (theme: ThemeI) => StyleSheet.create({
         backgroundColor: theme.colors.primary
     },
     primaryLight: {
-        backgroundColor: "#b4e1ff"
+        backgroundColor: COLOR_PRIMARY_LIGHT
     },
     primaryLightOutline: {
-        backgroundColor: "#F1F7FB",
+        backgroundColor: COLOR_PRIMARY_LIGHT,
         borderColor: theme.colors.primary,
         borderWidth: 1
     },

@@ -1,9 +1,10 @@
 
 import { GRAY_SCALE } from '../../theme/grayscale.constant';
 import { FONT_SIZE } from '../../theme/typography.constant';
-import React, { FC } from 'react';
+import React, { FC, useContext, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { NetzerText } from '../netzer-text';
+import { ThemeContext, ThemeI } from '../../context/theme/theme-context';
 
 interface NetzerListEmptyProps {
   Image: Function | null;
@@ -12,6 +13,9 @@ interface NetzerListEmptyProps {
 }
 
 export const NetzerListEmpty: FC<NetzerListEmptyProps> = ({ Image, text, description }) => {
+  const { theme } = useContext(ThemeContext);
+  const styles = useMemo(() => stylesComponent(theme), [theme])
+
   return (
     <View style={styles.empty}>
       {Image && <Image />}
@@ -21,7 +25,7 @@ export const NetzerListEmpty: FC<NetzerListEmptyProps> = ({ Image, text, descrip
   );
 };
 
-const styles = StyleSheet.create({
+const stylesComponent = (theme: ThemeI) => StyleSheet.create({
   empty: {
     flex: 1,
     alignItems: 'center',
@@ -32,7 +36,7 @@ const styles = StyleSheet.create({
     fontSize: FONT_SIZE.LARGE,
     marginTop: 30,
     textAlign: "center",
-    color: GRAY_SCALE.GRAY_70
+    color: theme.colors.text
   },
   description: {
     marginTop: 10,
