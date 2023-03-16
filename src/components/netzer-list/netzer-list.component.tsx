@@ -1,4 +1,3 @@
-import EmptyBox from '../../assets/EmptyBox.svg';
 import { usePagination } from '../../hooks/usePagination';
 import { FONT_SIZE } from '../../theme/typography.constant';
 
@@ -10,6 +9,7 @@ import { NetzerLoading } from '../netzer-loading/netzert-loading.component';
 import { NetzerText } from '../netzer-text';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThemeContext, ThemeI } from '../../context/theme/theme-context';
+import { EmptyBoxSVG } from '../../svg/empty-box-svg';
 
 interface ListDataProps {
     title?: string;
@@ -103,7 +103,7 @@ export const NetzerList = ({
                 pagingEnabled
                 ListEmptyComponent={
                     <View style={{ ...styles.emptyContainer, height: windowHeight - (windowHeight * 0.50) }}>
-                        {EmptySection ? EmptySection : <NetzerListEmpty Image={EmptyBox} text="No hay nada para mostrar" />}
+                        {EmptySection ? EmptySection : <NetzerListEmpty Image={EmptyBoxSVG} text="No hay nada para mostrar" />}
                     </View>
                 }
                 {...loadMoreDataAction && { onEndReached: _onEndReached }}
