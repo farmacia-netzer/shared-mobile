@@ -1,9 +1,8 @@
-import RadioCheck from '../../assets/radio-check.svg';
-import RadioUnCheck from '../../assets/radio-uncheck.svg';
-
 import { NORMAL_MARGIN, SMALL_MARGIN, XX_LARGE_SPACING } from "../../theme/dimensions.constant";
 import React, { ReactNode, useCallback, useMemo } from "react";
 import { Pressable, StyleProp, StyleSheet, ViewStyle } from "react-native";
+import { RadioCheckSVG } from "../../svg/radio-check-svg";
+import { RadioUncheckSVG } from "../../svg/radio-uncheck-svg";
 
 interface WLRadioButtonProps {
     selected: any
@@ -14,7 +13,7 @@ interface WLRadioButtonProps {
 }
 
 export const WLRadioButton = ({ selected, onChange, value, children, customStyles }: WLRadioButtonProps) => {
-    const Icon = useMemo(() => selected ? RadioCheck : RadioUnCheck, [selected])
+    const Icon = useMemo(() => selected ? RadioCheckSVG : RadioUncheckSVG, [selected])
 
     const onPress = useCallback(() => {
         onChange(value);

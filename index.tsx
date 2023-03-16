@@ -105,6 +105,7 @@ export {
     useLocation,
     usePagination,
     useAnimation,
+    LocationPosition,
 
     // helpers
     getAddressAndPosition,

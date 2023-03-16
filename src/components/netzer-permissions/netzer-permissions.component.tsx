@@ -1,4 +1,3 @@
-import GoogleMapIcon from '../../assets/google-maps.svg';
 import { PermissionsContext } from '../../context/PermissionsContext';
 import { FONT_SIZE } from '../../theme/typography.constant';
 import React, { useContext } from 'react';
@@ -6,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { NetzerInfo } from '../netzer-info';
 import { NetzerPrimaryButton } from '../netzer-primary-button/netzer-primary-button.component';
 import { NetzerText } from '../netzer-text';
+import { GoogleMapsSVG } from '../../svg/google-maps-svg';
 
 export const NetzerPermissions = ({ goBack }) => {
     const { askLocationPermission, permission } = useContext(PermissionsContext);
@@ -21,7 +21,7 @@ export const NetzerPermissions = ({ goBack }) => {
     return (
         <View style={styles.container}>
             <NetzerInfo
-                Icon={GoogleMapIcon}
+                Icon={GoogleMapsSVG}
                 title={'Permisos del mapa'}
                 description={'Farmacia Netzer - recoge datos de tu ubicación para ayudar a crear tu dirección de entrega de forma fácil y precisa.'}
             />

@@ -1,6 +1,6 @@
 {
   "name": "netzer-share-mobile",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "shared",
   "main": "index.tsx",
   "scripts": {
@@ -27,12 +27,13 @@
     "react": "*",
     "react-native": "*",
     "react-native-gesture-handler": "*",
+    "react-native-maps": "https://github.com/infoSamyak/react-native-maps#master",
+    "react-native-permissions": "^3.7.3",
     "react-native-reanimated": "*",
-    "react-redux": "*",
     "react-native-safe-area-context": "*",
     "react-navigation": "*",
-    "react-native-permissions": "^3.7.3",
-    "react-native-maps": "https://github.com/infoSamyak/react-native-maps#master"
+    "react-redux": "*",
+    "react-native-svg": "^13.8.0"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
@@ -45,9 +46,9 @@
     "react-native-geolocation-service": "^5.3.1",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-maps-directions": "^1.9.0",
+    "react-native-shared-element": "^0.8.8",
     "react-native-skeleton-placeholder": "^5.2.4",
     "react-native-vector-icons": "^9.2.0",
-    "react-native-shared-element": "^0.8.8",
     "react-navigation-shared-element": "https://github.com/farmacia-netzer/react-navigation-shared-element.git#update-react-navigation-to-v5",
     "typescript": "^4.9.5",
     "yup": "^0.32.11"
