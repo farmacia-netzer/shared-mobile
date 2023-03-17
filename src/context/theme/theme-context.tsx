@@ -5,6 +5,10 @@ export interface ThemeI {
   currentTheme: 'light' | 'dark';
   dividerColor: string;
   secondary: string;
+  text: {
+    secondary: string;
+    primary: string
+  };
   colors: {
     primary: string;
     background: string;

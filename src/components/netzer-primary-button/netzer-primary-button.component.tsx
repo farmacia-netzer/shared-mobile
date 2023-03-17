@@ -136,11 +136,11 @@ export const NetzerPrimaryButton: React.FC<NetzerPrimaryButtonProps> = ({
   const getButtonColor = () => ({
     [EButtonTypes.PRIMARY]: '#fff',
     [EButtonTypes.SECONDARY]: 'white',
-    [EButtonTypes.PRIMARY_LIGHT]: theme.colors.primary,
-    [EButtonTypes.PRIMARY_OUTLINE]: theme.colors.primary,
-    [EButtonTypes.PRIMARY_LIGHT_OUTLINE]: theme.colors.primary,
+    [EButtonTypes.PRIMARY_LIGHT]: theme.text.primary,
+    [EButtonTypes.PRIMARY_OUTLINE]: theme.text.primary,
+    [EButtonTypes.PRIMARY_LIGHT_OUTLINE]: theme.text.primary,
     [EButtonTypes.DANGER_TRANSPARENT]: 'red',
-    [EButtonTypes.TRANSPARENT]: theme.colors.primary,
+    [EButtonTypes.TRANSPARENT]: theme.text.primary,
     [EButtonTypes.WHITE_BLUR]: theme.colors.primary,
     [EButtonTypes.WHITE_LIGHT_BLUR]: 'white',
     [EButtonTypes.GRAY_TRANSPARENT]: GRAY_SCALE.GRAY_70
