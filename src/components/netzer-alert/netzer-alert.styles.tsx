@@ -34,11 +34,11 @@ export const stylesComponent = (theme: ThemeI) => StyleSheet.create({
     },
     primaryTitle: {
         ...title,
-        color: theme.colors.primary
+        color: theme.text.primary
     },
     primaryDescription: {
         ...description,
-        color: theme.colors.primary
+        color: theme.text.primary
     },
     secondaryContainer: {
         ...container,

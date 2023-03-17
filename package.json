@@ -1,6 +1,6 @@
 {
   "name": "netzer-share-mobile",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "shared",
   "main": "index.tsx",
   "scripts": {
