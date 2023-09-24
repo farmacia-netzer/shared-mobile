@@ -11,12 +11,11 @@ import {
 } from './src/services'
 import {
     createSharedElementStackNavigator,
-    Marker,
-    PROVIDER_GOOGLE,
-    MapPressEvent,
-    MarkerDragStartEndEvent,
-    MapView
-
+    // Marker,
+    // PROVIDER_GOOGLE,
+    // MapPressEvent,
+    // MarkerDragStartEndEvent,
+    // MapView
 } from './src/libs'
 import FlashMessage from 'react-native-flash-message';
 import { NativeModules } from 'react-native';
@@ -159,11 +158,11 @@ export {
 
     // libs 
     createSharedElementStackNavigator,
-    Marker,
-    PROVIDER_GOOGLE,
-    MapPressEvent,
-    MarkerDragStartEndEvent,
-    MapView,
+    // Marker,
+    // PROVIDER_GOOGLE,
+    // MapPressEvent,
+    // MarkerDragStartEndEvent,
+    // MapView,
 
     // interfaces
     IFieldsForm
