@@ -21,9 +21,9 @@ import FlashMessage from 'react-native-flash-message';
 import { NativeModules } from 'react-native';
 
 import {
-    permissionInitState,
-    PermissionsContext,
-    PermissionsProvider,
+    // permissionInitState,
+    // PermissionsContext,
+    // PermissionsProvider,
     NetzerThemeProvider
 } from './src/context';
 
@@ -117,9 +117,9 @@ export {
 
 
     // context
-    permissionInitState,
-    PermissionsContext,
-    PermissionsProvider,
+    // permissionInitState,
+    // PermissionsContext,
+    // PermissionsProvider,
     NetzerThemeProvider,
 
     // components
